@@ -1,0 +1,15 @@
+{
+  "name": "lhf-brain-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'No brain worker tests yet'"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
+

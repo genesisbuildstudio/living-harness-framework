@@ -1,0 +1,30 @@
+{
+  "lhf": {
+    "session-start": {
+      "path": "scripts/lhf/session-start.mjs",
+      "command": "pnpm lhf:session-start --scope \"<work>\"",
+      "status": "ACTIVE"
+    },
+    "impact": {
+      "path": "scripts/lhf/impact.mjs",
+      "command": "pnpm lhf:impact --changed",
+      "status": "ACTIVE"
+    },
+    "harness-graph": {
+      "path": "scripts/lhf/harness-graph.mjs",
+      "command": "pnpm lhf:harness-graph --check",
+      "status": "ACTIVE"
+    },
+    "ticket-contract": {
+      "path": "scripts/lhf/ticket-contract.mjs",
+      "command": "pnpm lhf:ticket-contract --check",
+      "status": "ACTIVE"
+    },
+    "session-close": {
+      "path": "scripts/lhf/session-close.mjs",
+      "command": "pnpm lhf:session-close --changed --check",
+      "status": "ACTIVE"
+    }
+  }
+}
+

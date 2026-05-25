@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "contracts"],
+  "properties": {
+    "schema_version": { "const": "lhf-contract-registry/v1" },
+    "generated_at": { "type": "string" },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["id", "title", "status", "spec", "source_paths", "test_paths", "required_generated"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "type": "string" },
+          "spec": { "type": "string" },
+          "source_paths": { "type": "array", "items": { "type": "string" } },
+          "test_paths": { "type": "array", "items": { "type": "string" } },
+          "required_generated": { "type": "array", "items": { "type": "string" } },
+          "fst_task_path": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,20 @@
+name: LHF Health
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lhf-health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lhf:impact --changed
+      - run: pnpm lhf:session-close --changed --check
+

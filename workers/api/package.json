@@ -1,0 +1,22 @@
+{
+  "name": "lhf-api-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'No worker tests yet'"
+  },
+  "dependencies": {
+    "@lhf/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251218.0",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.50.0"
+  }
+}
+

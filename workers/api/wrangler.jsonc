@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lhf-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-25",
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "LHF_ENV": "development"
+  }
+}
+

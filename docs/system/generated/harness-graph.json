@@ -1,0 +1,403 @@
+{
+  "schemaVersion": "living-harness-graph/v1",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "nodes": [
+    {
+      "id": "fst_task:001-health-api",
+      "kind": "fst_task",
+      "label": "001-health-api",
+      "path": "full-system-tester/tasks/001-health-api.md",
+      "sourceRefs": [
+        {
+          "path": "full-system-tester/tasks/001-health-api.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "migration:20260525000000_initial_lhf.sql",
+      "kind": "migration",
+      "label": "20260525000000_initial_lhf.sql",
+      "path": "supabase/migrations/20260525000000_initial_lhf.sql",
+      "sourceRefs": [
+        {
+          "path": "supabase/migrations/20260525000000_initial_lhf.sql"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "route:web:/index",
+      "kind": "web_route",
+      "label": "/index",
+      "path": "apps/web/src/index.ts",
+      "route": "/index",
+      "sourceRefs": [
+        {
+          "path": "apps/web/src/index.ts"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spec:feature.health-api",
+      "kind": "spec",
+      "label": "Health API",
+      "path": "docs/specs/features/health-api.md",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/health-api.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spec:system.lhf-core",
+      "kind": "spec",
+      "label": "Living Harness Core",
+      "path": "docs/specs/_LHF-CORE.md",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spine:admin_cortex",
+      "kind": "lhf_spine",
+      "label": "admin cortex",
+      "sourceRefs": [
+        {
+          "path": "AGENTS.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spine:capability_gate",
+      "kind": "lhf_spine",
+      "label": "capability gate",
+      "sourceRefs": [
+        {
+          "path": "AGENTS.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spine:context_cost_spine",
+      "kind": "lhf_spine",
+      "label": "context cost spine",
+      "sourceRefs": [
+        {
+          "path": "AGENTS.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spine:proof_spine",
+      "kind": "lhf_spine",
+      "label": "proof spine",
+      "sourceRefs": [
+        {
+          "path": "AGENTS.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spine:run_spine",
+      "kind": "lhf_spine",
+      "label": "run spine",
+      "sourceRefs": [
+        {
+          "path": "AGENTS.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spine:truth_graph",
+      "kind": "lhf_spine",
+      "label": "truth graph",
+      "sourceRefs": [
+        {
+          "path": "AGENTS.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "table:supabase:lhf_audit_events",
+      "kind": "table",
+      "label": "lhf_audit_events",
+      "path": "supabase/migrations/20260525000000_initial_lhf.sql",
+      "sourceRefs": [
+        {
+          "path": "supabase/migrations/20260525000000_initial_lhf.sql"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "worker:api",
+      "kind": "worker",
+      "label": "api",
+      "path": "workers/api/wrangler.jsonc",
+      "sourceRefs": [
+        {
+          "path": "workers/api/wrangler.jsonc"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:governs:spine:proof_spine:fst_task:001-health-api",
+      "from": "spine:proof_spine",
+      "to": "fst_task:001-health-api",
+      "kind": "governs",
+      "sourceRefs": [
+        {
+          "path": "full-system-tester/tasks/001-health-api.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:governs:spine:truth_graph:worker:api",
+      "from": "spine:truth_graph",
+      "to": "worker:api",
+      "kind": "governs",
+      "sourceRefs": [
+        {
+          "path": "workers/api/wrangler.jsonc"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:.env.example:spec:system.lhf-core",
+      "from": "file:.env.example",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:.gitignore:spec:system.lhf-core",
+      "from": "file:.gitignore",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:AGENTS.md:spec:system.lhf-core",
+      "from": "file:AGENTS.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:CLAUDE.md:spec:system.lhf-core",
+      "from": "file:CLAUDE.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:CONTRIBUTING.md:spec:system.lhf-core",
+      "from": "file:CONTRIBUTING.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:package.json:spec:system.lhf-core",
+      "from": "file:package.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:pnpm-lock.yaml:spec:system.lhf-core",
+      "from": "file:pnpm-lock.yaml",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:pnpm-workspace.yaml:spec:system.lhf-core",
+      "from": "file:pnpm-workspace.yaml",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:README.md:spec:system.lhf-core",
+      "from": "file:README.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:SECURITY.md:spec:system.lhf-core",
+      "from": "file:SECURITY.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:tsconfig.base.json:spec:system.lhf-core",
+      "from": "file:tsconfig.base.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:workers/api/package.json:spec:system.lhf-core",
+      "from": "file:workers/api/package.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:workers/api/src/index.ts:spec:feature.health-api",
+      "from": "file:workers/api/src/index.ts",
+      "to": "spec:feature.health-api",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/health-api.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:workers/api/tsconfig.json:spec:system.lhf-core",
+      "from": "file:workers/api/tsconfig.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:workers/api/wrangler.jsonc:spec:feature.health-api",
+      "from": "file:workers/api/wrangler.jsonc",
+      "to": "spec:feature.health-api",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/health-api.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:tests:fst_task:001-health-api:spec:feature.health-api",
+      "from": "fst_task:001-health-api",
+      "to": "spec:feature.health-api",
+      "kind": "tests",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/health-api.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:tests:fst_task:001-health-api:spec:system.lhf-core",
+      "from": "fst_task:001-health-api",
+      "to": "spec:system.lhf-core",
+      "kind": "tests",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "stats": {
+    "totalNodes": 13,
+    "totalEdges": 19,
+    "nodesByKind": {
+      "fst_task": 1,
+      "migration": 1,
+      "web_route": 1,
+      "spec": 2,
+      "lhf_spine": 6,
+      "table": 1,
+      "worker": 1
+    },
+    "edgesByKind": {
+      "governs": 2,
+      "implements": 15,
+      "tests": 2
+    },
+    "trackedFileCount": 57,
+    "workerCount": 1,
+    "fstTaskCount": 1
+  }
+}

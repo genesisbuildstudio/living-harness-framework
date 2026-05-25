@@ -1,0 +1,58 @@
+{
+  "schema_version": "lhf-contract-registry/v1",
+  "generated_at": "1970-01-01T00:00:00.000Z",
+  "contracts": {
+    "feature.health-api": {
+      "id": "feature.health-api",
+      "title": "Health API",
+      "status": "live",
+      "spec": "docs/specs/features/health-api.md",
+      "source_paths": [
+        "workers/api/src/index.ts",
+        "workers/api/wrangler.jsonc"
+      ],
+      "test_paths": [],
+      "required_generated": [
+        "docs/system/generated/harness-graph.json"
+      ],
+      "fst_task_path": "full-system-tester/tasks/001-health-api.md"
+    },
+    "system.lhf-core": {
+      "id": "system.lhf-core",
+      "title": "Living Harness Core",
+      "status": "live",
+      "spec": "docs/specs/_LHF-CORE.md",
+      "source_paths": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "CONTRIBUTING.md",
+        "README.md",
+        "SECURITY.md",
+        "package.json",
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml",
+        "tsconfig.base.json",
+        ".env.example",
+        ".gitignore",
+        ".github",
+        "docs/system",
+        "docs/specs",
+        "docs/operations",
+        "scripts",
+        "packages/shared",
+        "workers/brain",
+        "workers/api/package.json",
+        "workers/api/tsconfig.json",
+        "apps/web",
+        "supabase",
+        "full-system-tester"
+      ],
+      "test_paths": [],
+      "required_generated": [
+        "docs/specs/registry.json",
+        "docs/system/generated/harness-graph.json"
+      ],
+      "fst_task_path": "full-system-tester/tasks/001-health-api.md"
+    }
+  }
+}

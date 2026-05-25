@@ -1,0 +1,27 @@
+{
+  "name": "living-harness-framework-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI-native monorepo starter for Cloudflare + Supabase apps",
+  "scripts": {
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "lhf:session-start": "node scripts/lhf/session-start.mjs",
+    "lhf:impact": "node scripts/lhf/impact.mjs",
+    "lhf:harness-graph": "node scripts/lhf/harness-graph.mjs",
+    "lhf:ticket-contract": "node scripts/lhf/ticket-contract.mjs",
+    "lhf:validate-contracts": "node scripts/lhf/validate-contracts.mjs",
+    "lhf:session-close": "node scripts/lhf/session-close.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.50.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.30.1"
+}
+
