@@ -40,5 +40,7 @@ This is the human-readable inventory. Generated truth lives in
 - `pnpm lhf:check-secrets`
 - `pnpm lhf:check-script-registry`
 - `pnpm lhf:check-supabase-rls`
+- `pnpm lhf:check-supabase-tests`
 - `pnpm lhf:check-wrangler`
+- `pnpm lhf:upgrade --check`
 - `pnpm lhf:session-close --changed --check`

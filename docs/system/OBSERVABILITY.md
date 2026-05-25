@@ -14,6 +14,9 @@ inspect later.
 ## Runtime Evidence
 
 - Cloudflare Workers should enable `observability` in `wrangler.jsonc`.
+- Cloudflare Workers can export OpenTelemetry-compatible traces and logs to an
+  OTLP destination. Metrics export is not currently supported by Workers OTel
+  export, so keep application counters in logs or your own metrics path.
 - Use correlation IDs on request paths.
 - Emit typed errors with user-safe messages and operator-safe details.
 - If Sentry or OpenTelemetry is configured, record request spans, tool calls,
@@ -21,6 +24,8 @@ inspect later.
 - Shared helpers in `packages/shared/src/observability.ts` provide correlation
   IDs, typed error envelopes, redaction, and runtime event serialization.
 - Session receipts can be written with `pnpm lhf:episode`.
+- FST tasks can be executed with `pnpm lhf:fst --task <id>`, which writes
+  machine-readable receipts under `docs/operations/episodes/`.
 
 ## Done Means Observable
 

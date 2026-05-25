@@ -15,9 +15,12 @@ Prove the starter Cloudflare Worker exposes a health endpoint.
 3. Request `GET /healthz`.
 4. Confirm response has `ok: true`, `service: "lhf-api"`, and `correlationId`.
 
+```bash
+pnpm --filter lhf-api-worker typecheck
+```
+
 ## Pass Criteria
 
 - Typecheck passes.
 - `/healthz` returns HTTP 200.
 - Result is recorded in the session or PR receipt.
-

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "lhf-fst-receipt/v1",
+  "createdAt": "2026-05-25T19:01:43.565Z",
+  "task": "002-demo-items",
+  "status": "pass",
+  "commands": [
+    "pnpm --filter lhf-api-worker typecheck",
+    "pnpm lhf:check-supabase-rls",
+    "pnpm lhf:check-supabase-tests"
+  ],
+  "proof": [
+    "> lhf-api-worker@0.1.0 typecheck /Users/samadhi/Desktop/living-harness-framework/workers/api\n> tsc --noEmit",
+    "> living-harness-framework-starter@0.3.0 lhf:check-supabase-rls /Users/samadhi/Desktop/living-harness-framework\n> node scripts/lhf/check-supabase-rls.mjs\n\nPASS: 1 Supabase migration file(s) include RLS coverage for public tables.",
+    "> living-harness-framework-starter@0.3.0 lhf:check-supabase-tests /Users/samadhi/Desktop/living-harness-framework\n> node scripts/lhf/check-supabase-tests.mjs\n\nPASS: 2 public table(s) have pgTAP-style database test coverage."
+  ],
+  "notes": []
+}

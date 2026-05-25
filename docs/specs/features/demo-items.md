@@ -11,9 +11,10 @@ source_paths:
     workers/api/src/index.ts,
     workers/api/wrangler.jsonc,
     supabase/migrations/20260525000000_initial_lhf.sql,
+    supabase/tests/database/lhf_demo_items.test.sql,
     packages/shared/src/observability.ts,
   ]
-test_paths: [full-system-tester/tasks/002-demo-items.md]
+test_paths: [full-system-tester/tasks/002-demo-items.md, supabase/tests/database/lhf_demo_items.test.sql]
 required_generated: [docs/system/generated/harness-graph.json]
 fst_task_path: full-system-tester/tasks/002-demo-items.md
 ---
@@ -39,4 +40,5 @@ IDs, and FST proof.
 
 - `pnpm --filter lhf-api-worker typecheck` passes.
 - `pnpm lhf:check-supabase-rls` passes for `lhf_demo_items`.
+- `pnpm lhf:check-supabase-tests` passes for pgTAP-style database tests.
 - FST 002 proves the route returns a correlation ID and item list.

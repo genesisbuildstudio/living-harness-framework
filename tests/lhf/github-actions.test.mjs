@@ -32,3 +32,29 @@ test("github-actions check blocks dangerous workflow permissions", () => {
   assert.match(result.stderr, /pull_request_target/);
   assert.match(result.stderr, /write-all/);
 });
+
+test("github-actions check blocks mutable action tags", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-actions-"));
+  mkdirSync(join(root, ".github/workflows"), { recursive: true });
+  writeFileSync(join(root, ".github/workflows/tagged.yml"), [
+    "name: Tagged",
+    "on: pull_request",
+    "permissions:",
+    "  contents: read",
+    "jobs:",
+    "  test:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "",
+  ].join("\n"));
+
+  const result = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/check-github-actions.mjs"),
+    "--root",
+    root,
+  ], { encoding: "utf8" });
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /must pin action references to a full commit SHA/);
+});

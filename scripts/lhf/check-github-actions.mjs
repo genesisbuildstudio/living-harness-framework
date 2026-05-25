@@ -50,6 +50,13 @@ for (const file of files) {
   if (/\bsecrets:\s*inherit\b/.test(body)) {
     failures.push(`${rel}: secrets: inherit is blocked by default`);
   }
+  for (const match of body.matchAll(/uses:\s*([^\s#]+)@([^\s#]+)/g)) {
+    const reference = match[0];
+    const ref = match[2];
+    if (!/^[a-f0-9]{40}$/i.test(ref)) {
+      failures.push(`${rel}: ${reference} must pin action references to a full commit SHA`);
+    }
+  }
 }
 
 if (failures.length > 0) {

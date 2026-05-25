@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "lhf-fst-receipt/v1",
+  "createdAt": "2026-05-25T19:01:42.701Z",
+  "task": "001-health-api",
+  "status": "pass",
+  "commands": [
+    "pnpm --filter lhf-api-worker typecheck"
+  ],
+  "proof": [
+    "> lhf-api-worker@0.1.0 typecheck /Users/samadhi/Desktop/living-harness-framework/workers/api\n> tsc --noEmit"
+  ],
+  "notes": []
+}

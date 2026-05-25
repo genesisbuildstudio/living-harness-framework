@@ -20,6 +20,8 @@ autonomy inside deterministic gates.
   secret-like Cloudflare `vars`.
 - `pnpm lhf:check-supabase-rls` blocks public Supabase tables without RLS and at
   least one policy.
+- `pnpm lhf:check-supabase-tests` blocks public Supabase tables without
+  pgTAP-style database test coverage.
 - Sensitive changes need explicit human review under Law 10.
 
 ## Agentic Risks

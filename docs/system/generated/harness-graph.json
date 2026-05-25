@@ -529,6 +529,17 @@
       ]
     },
     {
+      "id": "edge:implements:file:supabase/tests/database/lhf_demo_items.test.sql:spec:feature.demo-items",
+      "from": "file:supabase/tests/database/lhf_demo_items.test.sql",
+      "to": "spec:feature.demo-items",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:tsconfig.base.json:spec:system.lhf-core",
       "from": "file:tsconfig.base.json",
       "to": "spec:system.lhf-core",
@@ -642,7 +653,7 @@
   "findings": [],
   "stats": {
     "totalNodes": 17,
-    "totalEdges": 38,
+    "totalEdges": 39,
     "nodesByKind": {
       "fst_task": 3,
       "migration": 1,
@@ -654,10 +665,10 @@
     },
     "edgesByKind": {
       "governs": 4,
-      "implements": 31,
+      "implements": 32,
       "tests": 3
     },
-    "trackedFileCount": 91,
+    "trackedFileCount": 102,
     "workerCount": 1,
     "fstTaskCount": 3
   }

@@ -26,12 +26,15 @@ This repo uses Living Harness Framework.
 pnpm lhf:session-start --scope "<work>"
 pnpm lhf:init --name "<Project Name>" --slug "<project-slug>"
 pnpm lhf:episode --task "<id>" --status pass --proof "<proof>"
+pnpm lhf:fst --task 000-lhf-kernel-health
+pnpm lhf:upgrade --check
 pnpm lhf:impact --changed
 pnpm lhf:harness-graph --check
 pnpm lhf:check-ai-surfaces
 pnpm lhf:check-github-actions
 pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
+pnpm lhf:check-supabase-tests
 pnpm lhf:check-wrangler
 pnpm lhf:ticket-contract --check
 pnpm lhf:session-close --changed --check

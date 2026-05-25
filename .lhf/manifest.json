@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "lhf-manifest/v1",
+  "version": "0.3.0",
+  "frameworkFiles": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md",
+    "SECURITY.md",
+    "package.json",
+    ".github/CODEOWNERS",
+    ".github/copilot-instructions.md",
+    ".github/workflows/ci.yml",
+    ".github/workflows/lhf-health.yml",
+    "docs/system/READ-FIRST.md",
+    "docs/system/MONOREPO-LAWS.md",
+    "docs/system/SECURITY-MODEL.md",
+    "docs/system/OBSERVABILITY.md",
+    "docs/system/UPGRADE-POLICY.md",
+    "docs/specs/_LHF-CORE.md",
+    "docs/specs/registry.json",
+    "scripts/REGISTRY.json",
+    "scripts/lhf/lib.mjs",
+    "scripts/lhf/session-close.mjs",
+    "scripts/lhf/init-project.mjs",
+    "scripts/lhf/upgrade.mjs",
+    "scripts/lhf/fst-run.mjs",
+    "scripts/lhf/check-github-actions.mjs",
+    "scripts/lhf/check-supabase-tests.mjs",
+    "full-system-tester/CLAUDE.md",
+    "full-system-tester/tasks/000-lhf-kernel-health.md"
+  ]
+}

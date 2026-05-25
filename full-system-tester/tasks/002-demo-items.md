@@ -18,6 +18,12 @@ view model, Worker API, Supabase table, typed errors, and runtime evidence.
 5. Confirm the response contains `ok: true`, `correlationId`, `dataMode`, and a
    non-empty `items` array.
 
+```bash
+pnpm --filter lhf-api-worker typecheck
+pnpm lhf:check-supabase-rls
+pnpm lhf:check-supabase-tests
+```
+
 ## Pass Criteria
 
 - Typecheck passes.

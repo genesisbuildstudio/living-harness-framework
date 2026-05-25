@@ -17,6 +17,12 @@ contracts must all pass together.
 3. Run `pnpm lhf:session-close --changed --check`.
 4. Record any failure and the exact command output in the PR/session receipt.
 
+```bash
+pnpm lhf:impact --changed --check
+pnpm lhf:harness-graph --check
+pnpm lhf:session-close --changed --check
+```
+
 ## Pass Criteria
 
 - All LHF closeout checks pass.

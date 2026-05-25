@@ -27,10 +27,12 @@
         "workers/api/src/index.ts",
         "workers/api/wrangler.jsonc",
         "supabase/migrations/20260525000000_initial_lhf.sql",
+        "supabase/tests/database/lhf_demo_items.test.sql",
         "packages/shared/src/observability.ts"
       ],
       "test_paths": [
-        "full-system-tester/tasks/002-demo-items.md"
+        "full-system-tester/tasks/002-demo-items.md",
+        "supabase/tests/database/lhf_demo_items.test.sql"
       ],
       "required_generated": [
         "docs/system/generated/harness-graph.json"
@@ -55,6 +57,7 @@
         "tsconfig.base.json",
         ".env.example",
         ".gitignore",
+        ".lhf",
         ".cursor",
         ".github",
         "docs/system",

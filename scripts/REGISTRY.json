@@ -10,6 +10,16 @@
       "command": "pnpm lhf:episode --task \"<id>\" --status pass --proof \"<proof>\"",
       "status": "ACTIVE"
     },
+    "fst-run": {
+      "path": "scripts/lhf/fst-run.mjs",
+      "command": "pnpm lhf:fst --task 000-lhf-kernel-health",
+      "status": "ACTIVE"
+    },
+    "upgrade": {
+      "path": "scripts/lhf/upgrade.mjs",
+      "command": "pnpm lhf:upgrade --check",
+      "status": "ACTIVE"
+    },
     "session-start": {
       "path": "scripts/lhf/session-start.mjs",
       "command": "pnpm lhf:session-start --scope \"<work>\"",
@@ -53,6 +63,11 @@
     "check-supabase-rls": {
       "path": "scripts/lhf/check-supabase-rls.mjs",
       "command": "pnpm lhf:check-supabase-rls",
+      "status": "ACTIVE"
+    },
+    "check-supabase-tests": {
+      "path": "scripts/lhf/check-supabase-tests.mjs",
+      "command": "pnpm lhf:check-supabase-tests",
       "status": "ACTIVE"
     },
     "check-wrangler": {

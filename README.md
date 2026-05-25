@@ -31,10 +31,12 @@ Framework rules while helping me build this app.
 - Feature specs and generated registry: `docs/specs/`
 - Harness graph generator: `scripts/lhf/harness-graph.mjs`
 - Project initializer: `scripts/lhf/init-project.mjs`
+- Upgrade manifest checker: `scripts/lhf/upgrade.mjs`
 - Episode receipt writer: `scripts/lhf/episode.mjs`
+- Executable FST runner: `scripts/lhf/fst-run.mjs`
 - Ticket contract gate: `scripts/lhf/ticket-contract.mjs`
 - Impact/session gates: `scripts/lhf/impact.mjs`, `session-start.mjs`, `session-close.mjs`
-- Security/config gates: secrets, doc size, GitHub Actions, script registry, Wrangler, Supabase RLS
+- Security/config gates: secrets, doc size, GitHub Actions, script registry, Wrangler, Supabase RLS, Supabase tests
 - Cloudflare Worker starter: `workers/api/`
 - Supabase migration starter: `supabase/migrations/`
 - Complete reference flow: `GET /demo/items` + `public.lhf_demo_items`
@@ -60,7 +62,9 @@ pnpm lhf:check-ai-surfaces
 pnpm lhf:check-github-actions
 pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
+pnpm lhf:check-supabase-tests
 pnpm lhf:check-wrangler
+pnpm lhf:fst --task 000-lhf-kernel-health
 pnpm lhf:session-close --changed --check
 ```
 

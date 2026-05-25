@@ -28,6 +28,7 @@ pnpm lhf:check-secrets
 pnpm lhf:check-github-actions
 pnpm lhf:check-wrangler
 pnpm lhf:check-supabase-rls
+pnpm lhf:check-supabase-tests
 ```
 
 ## Reporting Issues

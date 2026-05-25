@@ -10,8 +10,10 @@ const checks = [
   ["pnpm", ["lhf:check-script-registry"]],
   ["pnpm", ["lhf:check-secrets"]],
   ["pnpm", ["lhf:check-supabase-rls"]],
+  ["pnpm", ["lhf:check-supabase-tests"]],
   ["pnpm", ["lhf:check-wrangler"]],
   ["pnpm", ["lhf:ticket-contract", "--check"]],
+  ["pnpm", ["lhf:upgrade", "--check"]],
 ];
 
 let failed = false;

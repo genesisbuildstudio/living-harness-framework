@@ -12,17 +12,19 @@ LHF must be safe to adopt without trapping projects on one starter version.
 
 ## Upgrade Shape
 
-Future `pnpm lhf:upgrade` should:
+`pnpm lhf:upgrade --check` currently:
 
-1. Detect the installed LHF version.
-2. Compare framework-owned files with the target version.
-3. Apply safe additive updates.
-4. Produce a diff receipt for human review.
-5. Refuse to overwrite app-owned code without explicit approval.
+1. Reads `.lhf/manifest.json`.
+2. Verifies the framework manifest schema and version.
+3. Verifies listed framework-owned files still exist.
+4. Refuses to claim upgrade health when framework files are missing.
+
+Future upgrade modes may apply additive framework updates, but must produce a
+diff receipt and refuse to overwrite app-owned code without explicit approval.
 
 ## Current Manual Upgrade
 
-Until the upgrade command exists, copy framework changes only after running:
+Copy framework changes only after running:
 
 ```bash
 pnpm lhf:impact --changed
