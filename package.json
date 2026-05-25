@@ -11,6 +11,12 @@
     "lhf:session-start": "node scripts/lhf/session-start.mjs",
     "lhf:impact": "node scripts/lhf/impact.mjs",
     "lhf:harness-graph": "node scripts/lhf/harness-graph.mjs",
+    "lhf:check-ai-surfaces": "node scripts/lhf/check-ai-surfaces.mjs",
+    "lhf:check-doc-size": "node scripts/lhf/check-doc-size.mjs",
+    "lhf:check-script-registry": "node scripts/lhf/check-script-registry.mjs",
+    "lhf:check-secrets": "node scripts/lhf/check-secrets.mjs",
+    "lhf:check-supabase-rls": "node scripts/lhf/check-supabase-rls.mjs",
+    "lhf:check-wrangler": "node scripts/lhf/check-wrangler-config.mjs",
     "lhf:ticket-contract": "node scripts/lhf/ticket-contract.mjs",
     "lhf:validate-contracts": "node scripts/lhf/validate-contracts.mjs",
     "lhf:session-close": "node scripts/lhf/session-close.mjs"
@@ -24,4 +30,3 @@
   },
   "packageManager": "pnpm@10.30.1"
 }
-

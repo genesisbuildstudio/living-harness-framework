@@ -12,10 +12,11 @@ ALTER TABLE public.lhf_audit_events ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "lhf_audit_events_read_own"
 ON public.lhf_audit_events
 FOR SELECT
+TO authenticated
 USING (actor_id = auth.uid()::text);
 
 CREATE POLICY "lhf_audit_events_insert_own"
 ON public.lhf_audit_events
 FOR INSERT
+TO authenticated
 WITH CHECK (actor_id = auth.uid()::text);
-

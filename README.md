@@ -25,16 +25,23 @@ Framework rules while helping me build this app.
 
 ## What This Starter Includes
 
-- AI agent instructions: `AGENTS.md`, `CLAUDE.md`
+- AI agent instructions: `AGENTS.md`, `CLAUDE.md`, GitHub Copilot, Cursor
 - LHF laws and source-of-truth docs: `docs/system/`
 - Feature specs and generated registry: `docs/specs/`
 - Harness graph generator: `scripts/lhf/harness-graph.mjs`
 - Ticket contract gate: `scripts/lhf/ticket-contract.mjs`
 - Impact/session gates: `scripts/lhf/impact.mjs`, `session-start.mjs`, `session-close.mjs`
+- Security/config gates: secrets, doc size, script registry, Wrangler, Supabase RLS
 - Cloudflare Worker starter: `workers/api/`
 - Supabase migration starter: `supabase/migrations/`
 - FST-lite proof tasks: `full-system-tester/`
 - GitHub Actions and PR template: `.github/`
+
+## Use As A Template
+
+Create a new GitHub repository from this folder, then follow
+`docs/system/ADAPTATION-GUIDE.md`. Keep the harness gates intact while replacing
+the app identity, routes, schema, and business logic.
 
 ## Core Rule
 
@@ -42,8 +49,17 @@ Every meaningful change must map to one LHF spine, one spec owner, one proof
 path, and one cleanup policy. If work does not simplify, consolidate, prove, or
 enforce something, cut it.
 
+## Hardening Commands
+
+```bash
+pnpm lhf:check-ai-surfaces
+pnpm lhf:check-secrets
+pnpm lhf:check-supabase-rls
+pnpm lhf:check-wrangler
+pnpm lhf:session-close --changed --check
+```
+
 ## Not Included
 
 This is a framework kernel. It intentionally does not include app-specific
 branding, business logic, private data, secrets, or production credentials.
-

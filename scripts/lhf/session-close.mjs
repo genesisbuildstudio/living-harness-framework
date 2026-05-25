@@ -4,6 +4,12 @@ import { runProcess } from "./lib.mjs";
 const checks = [
   ["pnpm", ["lhf:validate-contracts"]],
   ["pnpm", ["lhf:harness-graph", "--check"]],
+  ["pnpm", ["lhf:check-ai-surfaces"]],
+  ["pnpm", ["lhf:check-doc-size"]],
+  ["pnpm", ["lhf:check-script-registry"]],
+  ["pnpm", ["lhf:check-secrets"]],
+  ["pnpm", ["lhf:check-supabase-rls"]],
+  ["pnpm", ["lhf:check-wrangler"]],
   ["pnpm", ["lhf:ticket-contract", "--check"]],
 ];
 
@@ -21,4 +27,3 @@ if (failed) {
 }
 
 console.log("PASS: LHF session close checks passed.");
-

@@ -1,7 +1,6 @@
 # CLAUDE.md
 
-Claude Code should follow `AGENTS.md`. This file exists because Claude Code
-loads it by convention in many repositories.
+@AGENTS.md
 
-Start every session by reading `AGENTS.md` and `docs/system/READ-FIRST.md`.
-
+Claude Code should treat `AGENTS.md` as the shared source of truth, then read
+`docs/system/READ-FIRST.md` for the current map and commands.

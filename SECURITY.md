@@ -15,9 +15,21 @@ compliance review.
 - Review every auth, billing, privacy, AI-autonomy, deployment, and deletion
   change as a sensitive change.
 - Use typed errors and user-safe failure messages for runtime paths.
+- Keep CI required on protected branches. At minimum require `pnpm typecheck`
+  and `pnpm lhf:session-close --changed --check`.
+- Before publishing as a public template, enable Dependabot, branch protection
+  or repository rulesets, a security contact, and code ownership for critical
+  paths.
+
+## Local Security Gates
+
+```bash
+pnpm lhf:check-secrets
+pnpm lhf:check-wrangler
+pnpm lhf:check-supabase-rls
+```
 
 ## Reporting Issues
 
 For public projects, replace this section with your security contact and
 disclosure policy before launch.
-

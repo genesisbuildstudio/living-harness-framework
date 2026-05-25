@@ -13,9 +13,6 @@ pnpm lhf:impact --changed
 
 ```bash
 pnpm typecheck
-pnpm lhf:harness-graph --check
-pnpm lhf:validate-contracts
-pnpm lhf:ticket-contract --check
 pnpm lhf:session-close --changed --check
 ```
 
@@ -26,4 +23,3 @@ pnpm lhf:session-close --changed --check
 - Explain what the change consolidates or replaces.
 - Include proof commands.
 - Do not introduce duplicate sources of truth.
-

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { contractEntries, loadRegistry, normalizePath, pathExists, ROOT, trackedFiles } from "./lib.mjs";
+import { collectChangedPaths, contractEntries, loadRegistry, normalizePath, pathExists, ROOT, trackedFiles } from "./lib.mjs";
 
 const OUTPUT_PATH = "docs/system/generated/harness-graph.json";
 const CHECK_MODE = process.argv.includes("--check");
@@ -25,7 +25,7 @@ function routeFromPath(path) {
 }
 
 function buildGraph(generatedAt) {
-  const files = trackedFiles();
+  const files = [...new Set([...trackedFiles(), ...collectChangedPaths()])].sort();
   const fileSet = new Set(files);
   const registry = loadRegistry();
   const nodes = new Map();
@@ -121,4 +121,3 @@ if (CHECK_MODE) {
   writeFileSync(join(ROOT, OUTPUT_PATH), `${JSON.stringify(graph, null, 2)}\n`);
   console.log(`Wrote ${OUTPUT_PATH} (${graph.stats.totalNodes} nodes, ${graph.stats.totalEdges} edges).`);
 }
-

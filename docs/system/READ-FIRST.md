@@ -10,6 +10,10 @@ This repo uses Living Harness Framework.
 | Monorepo laws | `docs/system/MONOREPO-LAWS.md` |
 | Current system inventory | `docs/system/SYSTEM-MANIFEST.md` |
 | Routes/workers/surfaces | `docs/system/PLATFORM-MAP.md` |
+| AI platform adapters | `docs/system/AI-CODING-PLATFORM-GUIDE.md` |
+| Security model | `docs/system/SECURITY-MODEL.md` |
+| Observability model | `docs/system/OBSERVABILITY.md` |
+| Project adaptation | `docs/system/ADAPTATION-GUIDE.md` |
 | Feature contracts | `docs/specs/registry.json` |
 | Work queue | `docs/operations/BACKLOG.md` |
 | Harness graph | `docs/system/generated/harness-graph.json` |
@@ -20,6 +24,10 @@ This repo uses Living Harness Framework.
 pnpm lhf:session-start --scope "<work>"
 pnpm lhf:impact --changed
 pnpm lhf:harness-graph --check
+pnpm lhf:check-ai-surfaces
+pnpm lhf:check-secrets
+pnpm lhf:check-supabase-rls
+pnpm lhf:check-wrangler
 pnpm lhf:ticket-contract --check
 pnpm lhf:session-close --changed --check
 ```
@@ -33,4 +41,4 @@ pnpm lhf:session-close --changed --check
 - Security/privacy/cost impact is documented.
 - Tests or FST-lite proof exist.
 - Cleanup/dead-code implications are handled.
-
+- AI platform adapters still point to the same source of truth.

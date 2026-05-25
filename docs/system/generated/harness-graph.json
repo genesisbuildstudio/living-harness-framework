@@ -3,6 +3,19 @@
   "generatedAt": "1970-01-01T00:00:00.000Z",
   "nodes": [
     {
+      "id": "fst_task:000-lhf-kernel-health",
+      "kind": "fst_task",
+      "label": "000-lhf-kernel-health",
+      "path": "full-system-tester/tasks/000-lhf-kernel-health.md",
+      "sourceRefs": [
+        {
+          "path": "full-system-tester/tasks/000-lhf-kernel-health.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
       "id": "fst_task:001-health-api",
       "kind": "fst_task",
       "label": "001-health-api",
@@ -169,6 +182,17 @@
   ],
   "edges": [
     {
+      "id": "edge:governs:spine:proof_spine:fst_task:000-lhf-kernel-health",
+      "from": "spine:proof_spine",
+      "to": "fst_task:000-lhf-kernel-health",
+      "kind": "governs",
+      "sourceRefs": [
+        {
+          "path": "full-system-tester/tasks/000-lhf-kernel-health.md"
+        }
+      ]
+    },
+    {
       "id": "edge:governs:spine:proof_spine:fst_task:001-health-api",
       "from": "spine:proof_spine",
       "to": "fst_task:001-health-api",
@@ -237,6 +261,17 @@
     {
       "id": "edge:implements:file:CONTRIBUTING.md:spec:system.lhf-core",
       "from": "file:CONTRIBUTING.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:LICENSE:spec:system.lhf-core",
+      "from": "file:LICENSE",
       "to": "spec:system.lhf-core",
       "kind": "implements",
       "sourceRefs": [
@@ -380,10 +415,10 @@
   ],
   "findings": [],
   "stats": {
-    "totalNodes": 13,
-    "totalEdges": 19,
+    "totalNodes": 14,
+    "totalEdges": 21,
     "nodesByKind": {
-      "fst_task": 1,
+      "fst_task": 2,
       "migration": 1,
       "web_route": 1,
       "spec": 2,
@@ -392,12 +427,12 @@
       "worker": 1
     },
     "edgesByKind": {
-      "governs": 2,
-      "implements": 15,
+      "governs": 3,
+      "implements": 16,
       "tests": 2
     },
-    "trackedFileCount": 57,
+    "trackedFileCount": 73,
     "workerCount": 1,
-    "fstTaskCount": 1
+    "fstTaskCount": 2
   }
 }

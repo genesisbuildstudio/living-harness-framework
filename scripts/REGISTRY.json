@@ -15,9 +15,49 @@
       "command": "pnpm lhf:harness-graph --check",
       "status": "ACTIVE"
     },
+    "check-ai-surfaces": {
+      "path": "scripts/lhf/check-ai-surfaces.mjs",
+      "command": "pnpm lhf:check-ai-surfaces",
+      "status": "ACTIVE"
+    },
+    "check-doc-size": {
+      "path": "scripts/lhf/check-doc-size.mjs",
+      "command": "pnpm lhf:check-doc-size",
+      "status": "ACTIVE"
+    },
+    "check-script-registry": {
+      "path": "scripts/lhf/check-script-registry.mjs",
+      "command": "pnpm lhf:check-script-registry",
+      "status": "ACTIVE"
+    },
+    "check-secrets": {
+      "path": "scripts/lhf/check-secrets.mjs",
+      "command": "pnpm lhf:check-secrets",
+      "status": "ACTIVE"
+    },
+    "check-supabase-rls": {
+      "path": "scripts/lhf/check-supabase-rls.mjs",
+      "command": "pnpm lhf:check-supabase-rls",
+      "status": "ACTIVE"
+    },
+    "check-wrangler": {
+      "path": "scripts/lhf/check-wrangler-config.mjs",
+      "command": "pnpm lhf:check-wrangler",
+      "status": "ACTIVE"
+    },
+    "lib": {
+      "path": "scripts/lhf/lib.mjs",
+      "command": "N/A - shared helper module",
+      "status": "ACTIVE"
+    },
     "ticket-contract": {
       "path": "scripts/lhf/ticket-contract.mjs",
       "command": "pnpm lhf:ticket-contract --check",
+      "status": "ACTIVE"
+    },
+    "validate-contracts": {
+      "path": "scripts/lhf/validate-contracts.mjs",
+      "command": "pnpm lhf:validate-contracts",
       "status": "ACTIVE"
     },
     "session-close": {
@@ -27,4 +67,3 @@
     }
   }
 }
-

@@ -1,0 +1,30 @@
+# Observability Model
+
+LHF requires every important path to leave evidence that humans and agents can
+inspect later.
+
+## Local Evidence
+
+- `docs/specs/registry.json` maps source to contracts.
+- `docs/system/generated/harness-graph.json` maps repo structure and proof
+  edges.
+- `docs/operations/.ai-checkpoint.md` records session handoff risk.
+- FST-lite tasks record reproducible user-flow proof.
+
+## Runtime Evidence
+
+- Cloudflare Workers should enable `observability` in `wrangler.jsonc`.
+- Use correlation IDs on request paths.
+- Emit typed errors with user-safe messages and operator-safe details.
+- If Sentry or OpenTelemetry is configured, record request spans, tool calls,
+  model calls, cost counters, retries, and policy denials.
+
+## Done Means Observable
+
+A feature is not done unless failure states are visible through at least one of:
+CI output, FST receipt, runtime logs/traces, Sentry event, or admin/operator UI.
+
+## Cost Discipline
+
+Observability must not become a cost leak. Sample high-volume traces, aggregate
+token/cost counters, and keep raw prompt retention opt-in.

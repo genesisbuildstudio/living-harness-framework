@@ -29,3 +29,12 @@ This starter begins intentionally small.
 | Specs registry | `docs/specs/registry.json` |
 | Harness graph | `docs/system/generated/harness-graph.json` |
 
+## AI Platform Adapters
+
+| Platform | Path |
+| --- | --- |
+| Shared agents | `AGENTS.md` |
+| Claude Code | `CLAUDE.md` |
+| GitHub Copilot | `.github/copilot-instructions.md` |
+| GitHub path instructions | `.github/instructions/lhf-framework.instructions.md` |
+| Cursor | `.cursor/rules/lhf-core.mdc` |

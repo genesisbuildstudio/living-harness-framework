@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -19,5 +22,10 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lhf:validate-contracts
       - run: pnpm lhf:harness-graph --check
+      - run: pnpm lhf:check-ai-surfaces
+      - run: pnpm lhf:check-doc-size
+      - run: pnpm lhf:check-script-registry
+      - run: pnpm lhf:check-secrets
+      - run: pnpm lhf:check-supabase-rls
+      - run: pnpm lhf:check-wrangler
       - run: pnpm lhf:ticket-contract --check
-

@@ -25,9 +25,19 @@ This is the human-readable inventory. Generated truth lives in
 | `scripts/lhf` | Harness scripts |
 | `full-system-tester` | Lightweight proof tasks |
 | `supabase` | Database migrations and seed data |
+| `.github` | CI, PR template, Copilot instructions |
+| `.cursor` | Cursor project rule adapter |
 
 ## Required Generated Files
 
 - `docs/specs/registry.json`
 - `docs/system/generated/harness-graph.json`
 
+## Required Gates
+
+- `pnpm lhf:check-ai-surfaces`
+- `pnpm lhf:check-secrets`
+- `pnpm lhf:check-script-registry`
+- `pnpm lhf:check-supabase-rls`
+- `pnpm lhf:check-wrangler`
+- `pnpm lhf:session-close --changed --check`

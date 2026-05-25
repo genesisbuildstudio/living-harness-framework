@@ -10,6 +10,7 @@ source_paths:
     AGENTS.md,
     CLAUDE.md,
     CONTRIBUTING.md,
+    LICENSE,
     README.md,
     SECURITY.md,
     package.json,
@@ -18,6 +19,7 @@ source_paths:
     tsconfig.base.json,
     .env.example,
     .gitignore,
+    .cursor,
     .github,
     docs/system,
     docs/specs,
@@ -49,6 +51,10 @@ FST-lite proof templates.
 
 - `pnpm lhf:validate-contracts` passes.
 - `pnpm lhf:harness-graph --check` passes.
+- `pnpm lhf:check-ai-surfaces` passes.
+- `pnpm lhf:check-secrets` passes.
+- `pnpm lhf:check-supabase-rls` passes.
+- `pnpm lhf:check-wrangler` passes.
 - `pnpm lhf:ticket-contract --check` passes.
 - `pnpm lhf:impact --changed` maps framework-owned files to this contract.
 - `pnpm lhf:session-close --changed --check` passes.
