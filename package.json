@@ -29,7 +29,7 @@
     "lhf:session-close": "node scripts/lhf/session-close.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "wrangler": "^4.50.0"
   },
   "engines": {
