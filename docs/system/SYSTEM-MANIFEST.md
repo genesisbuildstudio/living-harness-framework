@@ -22,6 +22,7 @@ This is the human-readable inventory. Generated truth lives in
 | `workers/api` | Cloudflare Worker starter |
 | `workers/brain` | Optional agent/runtime Worker starter |
 | `packages/shared` | Shared TypeScript contracts |
+| `packages/create-living-harness` | Public create package |
 | `scripts/lhf` | Harness scripts |
 | `full-system-tester` | Lightweight proof tasks |
 | `supabase` | Database migrations and seed data |
@@ -36,6 +37,7 @@ This is the human-readable inventory. Generated truth lives in
 ## Required Gates
 
 - `pnpm lhf:check-ai-surfaces`
+- `pnpm lhf:check-branch-protection --repo <owner>/<repo>`
 - `pnpm lhf:check-github-actions`
 - `pnpm lhf:check-secrets`
 - `pnpm lhf:check-script-registry`
@@ -44,3 +46,9 @@ This is the human-readable inventory. Generated truth lives in
 - `pnpm lhf:check-wrangler`
 - `pnpm lhf:upgrade --check`
 - `pnpm lhf:session-close --changed --check`
+
+## Public Distribution
+
+- `packages/create-living-harness` publishes the `create-living-harness` CLI.
+- `.github/workflows/release-npm.yml` publishes with npm provenance.
+- `.github/workflows/pages.yml` deploys `docs-site/` to GitHub Pages.

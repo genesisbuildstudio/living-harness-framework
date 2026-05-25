@@ -1,6 +1,6 @@
 {
   "schemaVersion": "lhf-manifest/v1",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "frameworkFiles": [
     "AGENTS.md",
     "CLAUDE.md",
@@ -25,7 +25,14 @@
     "scripts/lhf/upgrade.mjs",
     "scripts/lhf/fst-run.mjs",
     "scripts/lhf/check-github-actions.mjs",
+    "scripts/lhf/check-branch-protection.mjs",
     "scripts/lhf/check-supabase-tests.mjs",
+    "packages/create-living-harness/package.json",
+    "packages/create-living-harness/bin/create-living-harness.mjs",
+    "packages/create-living-harness/README.md",
+    "docs-site/index.html",
+    ".github/workflows/release-npm.yml",
+    ".github/workflows/pages.yml",
     "full-system-tester/CLAUDE.md",
     "full-system-tester/tasks/000-lhf-kernel-health.md"
   ]

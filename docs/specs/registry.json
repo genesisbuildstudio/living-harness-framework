@@ -52,6 +52,8 @@
         "README.md",
         "SECURITY.md",
         "package.json",
+        "packages/create-living-harness",
+        "docs-site",
         "pnpm-lock.yaml",
         "pnpm-workspace.yaml",
         "tsconfig.base.json",

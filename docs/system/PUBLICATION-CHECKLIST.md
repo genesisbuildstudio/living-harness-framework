@@ -11,12 +11,14 @@ Use this before publishing LHF as a public GitHub template.
 - Keep all third-party GitHub Actions pinned to full commit SHAs.
 - Enable Dependabot alerts and security updates.
 - Confirm `pnpm test` and `pnpm lhf:session-close --changed --check` pass.
+- Confirm `pnpm lhf:check-branch-protection --repo <owner>/<repo>` passes.
 - Tag the first release and write release notes.
 
 ## Recommended
 
 - Enable OpenSSF Scorecard.
 - Publish npm packages with provenance or GitHub artifact attestations.
+- Enable GitHub Pages and confirm the Pages workflow deploys `docs-site/`.
 - Add a demo video or GIF.
 - Add a one-command template setup example.
 - Publish a compatibility policy before accepting external plugins.

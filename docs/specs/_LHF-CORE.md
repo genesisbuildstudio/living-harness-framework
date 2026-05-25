@@ -14,6 +14,8 @@ source_paths:
     README.md,
     SECURITY.md,
     package.json,
+    packages/create-living-harness,
+    docs-site,
     pnpm-lock.yaml,
     pnpm-workspace.yaml,
     tsconfig.base.json,
@@ -60,6 +62,7 @@ FST-lite proof templates.
 - `pnpm test` passes.
 - `pnpm lhf:harness-graph --check` passes.
 - `pnpm lhf:check-ai-surfaces` passes.
+- `pnpm lhf:check-branch-protection --fixture <rules.json>` passes in tests.
 - `pnpm lhf:check-github-actions` passes.
 - `pnpm lhf:check-secrets` passes.
 - `pnpm lhf:check-supabase-rls` passes.

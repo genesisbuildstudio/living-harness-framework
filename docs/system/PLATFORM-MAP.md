@@ -44,3 +44,12 @@ This starter begins intentionally small.
 | GitHub Copilot | `.github/copilot-instructions.md` |
 | GitHub path instructions | `.github/instructions/lhf-framework.instructions.md` |
 | Cursor | `.cursor/rules/lhf-core.mdc` |
+
+## Public Distribution
+
+| Surface | Path |
+| --- | --- |
+| Create package | `packages/create-living-harness` |
+| Hosted docs | `docs-site/index.html` |
+| npm release workflow | `.github/workflows/release-npm.yml` |
+| Pages workflow | `.github/workflows/pages.yml` |

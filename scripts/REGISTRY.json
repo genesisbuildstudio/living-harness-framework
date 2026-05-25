@@ -40,6 +40,11 @@
       "command": "pnpm lhf:check-ai-surfaces",
       "status": "ACTIVE"
     },
+    "check-branch-protection": {
+      "path": "scripts/lhf/check-branch-protection.mjs",
+      "command": "pnpm lhf:check-branch-protection --repo owner/name",
+      "status": "ACTIVE"
+    },
     "check-doc-size": {
       "path": "scripts/lhf/check-doc-size.mjs",
       "command": "pnpm lhf:check-doc-size",

@@ -19,8 +19,14 @@ LHF must be safe to adopt without trapping projects on one starter version.
 3. Verifies listed framework-owned files still exist.
 4. Refuses to claim upgrade health when framework files are missing.
 
-Future upgrade modes may apply additive framework updates, but must produce a
-diff receipt and refuse to overwrite app-owned code without explicit approval.
+`pnpm lhf:upgrade --source <template-root> --apply` currently:
+
+1. Compares manifest-owned framework files against a source template.
+2. Restores missing framework files.
+3. Updates changed framework files.
+4. Writes an `lhf-upgrade-receipt/v1` receipt under `docs/operations/episodes`.
+
+It only touches files listed in `.lhf/manifest.json`.
 
 ## Current Manual Upgrade
 

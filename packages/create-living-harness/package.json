@@ -1,0 +1,27 @@
+{
+  "name": "create-living-harness",
+  "version": "0.4.0",
+  "description": "Create a Living Harness Framework Cloudflare + Supabase monorepo",
+  "type": "module",
+  "bin": {
+    "create-living-harness": "./bin/create-living-harness.mjs"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "node --check bin/create-living-harness.mjs",
+    "typecheck": "node --check bin/create-living-harness.mjs",
+    "test": "node --check bin/create-living-harness.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
