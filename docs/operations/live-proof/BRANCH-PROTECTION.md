@@ -14,6 +14,6 @@ Required live rules:
 - active branch ruleset
 - pull request requirement
 - required status checks
-- required checks: `CI`, `LHF Health`, `CodeQL`
+- required checks: `ci`, `lhf-health`, `analyze`
 
 This local template cannot complete live proof until a GitHub remote exists.

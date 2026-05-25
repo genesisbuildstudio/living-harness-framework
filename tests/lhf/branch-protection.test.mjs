@@ -18,9 +18,9 @@ test("branch protection check accepts a ruleset fixture with required gates", ()
       rules: [
         { type: "pull_request" },
         { type: "required_status_checks", parameters: { required_status_checks: [
-          { context: "CI" },
-          { context: "LHF Health" },
-          { context: "CodeQL" }
+          { context: "ci" },
+          { context: "lhf-health" },
+          { context: "analyze" }
         ] } },
         { type: "required_linear_history" }
       ]

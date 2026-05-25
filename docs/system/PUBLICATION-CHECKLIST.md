@@ -7,7 +7,8 @@ Use this before publishing LHF as a public GitHub template.
 - Replace placeholder owners in `.github/CODEOWNERS`.
 - Replace the security contact in `SECURITY.md`.
 - Enable branch protection or repository rulesets for `main`.
-- Require `CI`, `LHF Health`, and `CodeQL` on pull requests.
+- Require the live GitHub Actions check contexts `ci`, `lhf-health`, and
+  `analyze` on pull requests.
 - Keep all third-party GitHub Actions pinned to full commit SHAs.
 - Enable Dependabot alerts and security updates.
 - Confirm `pnpm test` and `pnpm lhf:session-close --changed --check` pass.
