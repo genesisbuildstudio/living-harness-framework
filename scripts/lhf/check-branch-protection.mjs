@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
-const REQUIRED_CHECKS = ["CI", "LHF Health", "CodeQL"];
+const REQUIRED_CHECKS = ["ci", "lhf-health", "analyze"];
 
 function parseArgs(argv) {
   const args = {};
@@ -34,7 +34,16 @@ function loadRules(args) {
     console.error(result.stderr || result.stdout || "Unable to fetch repository rulesets with gh.");
     process.exit(1);
   }
-  return JSON.parse(result.stdout);
+  const rulesets = JSON.parse(result.stdout);
+  return rulesets.map((ruleset) => {
+    if (Array.isArray(ruleset.rules)) return ruleset;
+    const detail = spawnSync("gh", ["api", `/repos/${args.repo}/rulesets/${ruleset.id}`], {
+      encoding: "utf8",
+      shell: false,
+    });
+    if (detail.status !== 0) return ruleset;
+    return JSON.parse(detail.stdout);
+  });
 }
 
 function flattenChecks(rulesets) {
