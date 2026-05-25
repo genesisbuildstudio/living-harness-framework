@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
-const REQUIRED_CHECKS = ["CI", "LHF Health", "CodeQL"];
+const REQUIRED_CHECKS = ["ci", "lhf-health", "analyze"];
 
 function parseArgs(argv) {
   const args = {};
