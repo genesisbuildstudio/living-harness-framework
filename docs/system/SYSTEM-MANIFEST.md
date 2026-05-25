@@ -36,6 +36,7 @@ This is the human-readable inventory. Generated truth lives in
 ## Required Gates
 
 - `pnpm lhf:check-ai-surfaces`
+- `pnpm lhf:check-github-actions`
 - `pnpm lhf:check-secrets`
 - `pnpm lhf:check-script-registry`
 - `pnpm lhf:check-supabase-rls`

@@ -25,6 +25,7 @@ compliance review.
 
 ```bash
 pnpm lhf:check-secrets
+pnpm lhf:check-github-actions
 pnpm lhf:check-wrangler
 pnpm lhf:check-supabase-rls
 ```

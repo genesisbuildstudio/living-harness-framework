@@ -1,0 +1,9 @@
+# Replace @your-org/lhf-maintainers before publishing.
+* @your-org/lhf-maintainers
+
+/scripts/lhf/ @your-org/lhf-maintainers
+/docs/system/ @your-org/lhf-maintainers
+/docs/specs/ @your-org/lhf-maintainers
+/.github/workflows/ @your-org/lhf-maintainers
+/supabase/migrations/ @your-org/lhf-maintainers
+/workers/ @your-org/lhf-maintainers

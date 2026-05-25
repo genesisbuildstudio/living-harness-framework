@@ -1,5 +1,15 @@
 {
   "lhf": {
+    "init-project": {
+      "path": "scripts/lhf/init-project.mjs",
+      "command": "pnpm lhf:init --name \"<Project Name>\" --slug \"<project-slug>\"",
+      "status": "ACTIVE"
+    },
+    "episode": {
+      "path": "scripts/lhf/episode.mjs",
+      "command": "pnpm lhf:episode --task \"<id>\" --status pass --proof \"<proof>\"",
+      "status": "ACTIVE"
+    },
     "session-start": {
       "path": "scripts/lhf/session-start.mjs",
       "command": "pnpm lhf:session-start --scope \"<work>\"",
@@ -23,6 +33,11 @@
     "check-doc-size": {
       "path": "scripts/lhf/check-doc-size.mjs",
       "command": "pnpm lhf:check-doc-size",
+      "status": "ACTIVE"
+    },
+    "check-github-actions": {
+      "path": "scripts/lhf/check-github-actions.mjs",
+      "command": "pnpm lhf:check-github-actions",
       "status": "ACTIVE"
     },
     "check-script-registry": {

@@ -22,18 +22,24 @@ source_paths:
     .cursor,
     .github,
     docs/system,
-    docs/specs,
+    docs/specs/_LHF-CORE.md,
+    docs/specs/_TEMPLATE.md,
+    docs/specs/registry.json,
+    docs/specs/registry.schema.json,
     docs/operations,
     scripts,
-    packages/shared,
+    packages/shared/package.json,
+    packages/shared/tsconfig.json,
+    packages/shared/src/harness.ts,
+    packages/shared/src/index.ts,
     workers/brain,
     workers/api/package.json,
     workers/api/tsconfig.json,
-    apps/web,
-    supabase,
-    full-system-tester,
+    full-system-tester/CLAUDE.md,
+    full-system-tester/tasks/000-lhf-kernel-health.md,
+    full-system-tester/templates,
   ]
-test_paths: []
+test_paths: [tests/lhf]
 required_generated: [docs/specs/registry.json, docs/system/generated/harness-graph.json]
 fst_task_path: full-system-tester/tasks/001-health-api.md
 ---
@@ -50,8 +56,10 @@ FST-lite proof templates.
 ## Acceptance Criteria
 
 - `pnpm lhf:validate-contracts` passes.
+- `pnpm test` passes.
 - `pnpm lhf:harness-graph --check` passes.
 - `pnpm lhf:check-ai-surfaces` passes.
+- `pnpm lhf:check-github-actions` passes.
 - `pnpm lhf:check-secrets` passes.
 - `pnpm lhf:check-supabase-rls` passes.
 - `pnpm lhf:check-wrangler` passes.

@@ -11,6 +11,7 @@ coherent as it grows.
 
 ```bash
 pnpm install
+pnpm lhf:init --name "My App" --slug "my-app"
 pnpm lhf:session-start --scope "first app setup"
 pnpm lhf:harness-graph
 pnpm lhf:session-close --changed --check
@@ -29,11 +30,14 @@ Framework rules while helping me build this app.
 - LHF laws and source-of-truth docs: `docs/system/`
 - Feature specs and generated registry: `docs/specs/`
 - Harness graph generator: `scripts/lhf/harness-graph.mjs`
+- Project initializer: `scripts/lhf/init-project.mjs`
+- Episode receipt writer: `scripts/lhf/episode.mjs`
 - Ticket contract gate: `scripts/lhf/ticket-contract.mjs`
 - Impact/session gates: `scripts/lhf/impact.mjs`, `session-start.mjs`, `session-close.mjs`
-- Security/config gates: secrets, doc size, script registry, Wrangler, Supabase RLS
+- Security/config gates: secrets, doc size, GitHub Actions, script registry, Wrangler, Supabase RLS
 - Cloudflare Worker starter: `workers/api/`
 - Supabase migration starter: `supabase/migrations/`
+- Complete reference flow: `GET /demo/items` + `public.lhf_demo_items`
 - FST-lite proof tasks: `full-system-tester/`
 - GitHub Actions and PR template: `.github/`
 
@@ -53,6 +57,7 @@ enforce something, cut it.
 
 ```bash
 pnpm lhf:check-ai-surfaces
+pnpm lhf:check-github-actions
 pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
 pnpm lhf:check-wrangler

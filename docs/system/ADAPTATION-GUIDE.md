@@ -5,7 +5,7 @@ breaking the harness.
 
 ## First Hour
 
-1. Rename package and Worker names in `package.json` and `workers/*/wrangler.jsonc`.
+1. Run `pnpm lhf:init --name "<Project Name>" --slug "<project-slug>"`.
 2. Update `docs/system/SYSTEM-MANIFEST.md` and `docs/system/PLATFORM-MAP.md`.
 3. Replace placeholder backlog items in `docs/operations/BACKLOG.md`.
 4. Add the first real feature spec under `docs/specs/features/`.
@@ -24,6 +24,7 @@ breaking the harness.
 - App names, routes, domains, product copy, database schema, and business logic.
 - Placeholder FST tasks once real user flows exist.
 - Placeholder security contacts and release ownership.
+- Placeholder CODEOWNERS before publishing publicly.
 
 ## Migration Rule
 

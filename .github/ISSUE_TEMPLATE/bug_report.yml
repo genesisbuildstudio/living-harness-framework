@@ -1,0 +1,26 @@
+name: Bug Report
+description: Report a reproducible LHF bug.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Include the command, route, or harness gate that failed.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: List exact commands and expected vs actual output.
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Proof output
+      description: Paste relevant terminal output or FST receipt snippets.
+    validations:
+      required: true

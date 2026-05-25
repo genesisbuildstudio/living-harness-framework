@@ -6,6 +6,7 @@ const checks = [
   ["pnpm", ["lhf:harness-graph", "--check"]],
   ["pnpm", ["lhf:check-ai-surfaces"]],
   ["pnpm", ["lhf:check-doc-size"]],
+  ["pnpm", ["lhf:check-github-actions"]],
   ["pnpm", ["lhf:check-script-registry"]],
   ["pnpm", ["lhf:check-secrets"]],
   ["pnpm", ["lhf:check-supabase-rls"]],

@@ -18,6 +18,9 @@ inspect later.
 - Emit typed errors with user-safe messages and operator-safe details.
 - If Sentry or OpenTelemetry is configured, record request spans, tool calls,
   model calls, cost counters, retries, and policy denials.
+- Shared helpers in `packages/shared/src/observability.ts` provide correlation
+  IDs, typed error envelopes, redaction, and runtime event serialization.
+- Session receipts can be written with `pnpm lhf:episode`.
 
 ## Done Means Observable
 

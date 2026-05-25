@@ -7,7 +7,8 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./harness": "./src/harness.ts"
+    "./harness": "./src/harness.ts",
+    "./observability": "./src/observability.ts"
   },
   "scripts": {
     "build": "tsc --noEmit",
@@ -18,4 +19,3 @@
     "typescript": "^5.9.3"
   }
 }
-

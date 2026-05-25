@@ -5,13 +5,14 @@ This starter is safe to commit because it contains no real credentials.
 ## Cloudflare
 
 1. Create a Cloudflare account and Workers project.
-2. Rename `workers/api/wrangler.jsonc` from `lhf-api` to your project worker.
+2. Run `pnpm lhf:init --name "<Project Name>" --slug "<project-slug>"`.
 3. Store secrets with Wrangler:
 
 ```bash
 pnpm --filter lhf-api-worker wrangler secret put SUPABASE_URL
-pnpm --filter lhf-api-worker wrangler secret put SUPABASE_ANON_KEY
+pnpm --filter lhf-api-worker wrangler secret put SUPABASE_SERVICE_ROLE_KEY
 pnpm --filter lhf-api-worker wrangler secret put SENTRY_DSN
+pnpm --filter lhf-api-worker wrangler secret put OTEL_EXPORTER_OTLP_ENDPOINT
 ```
 
 4. Run locally:
@@ -49,6 +50,6 @@ Before launch:
 - Rotate initial secrets.
 - Configure branch protection.
 - Configure Sentry or equivalent error monitoring.
+- Configure OpenTelemetry export if you need centralized traces.
 - Add app-specific FST tasks for core flows.
 - Run `pnpm lhf:session-close --changed --check`.
-

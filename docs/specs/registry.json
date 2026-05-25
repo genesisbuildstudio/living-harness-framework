@@ -17,6 +17,26 @@
       ],
       "fst_task_path": "full-system-tester/tasks/001-health-api.md"
     },
+    "feature.demo-items": {
+      "id": "feature.demo-items",
+      "title": "Demo Items Reference Flow",
+      "status": "live",
+      "spec": "docs/specs/features/demo-items.md",
+      "source_paths": [
+        "apps/web/src/index.ts",
+        "workers/api/src/index.ts",
+        "workers/api/wrangler.jsonc",
+        "supabase/migrations/20260525000000_initial_lhf.sql",
+        "packages/shared/src/observability.ts"
+      ],
+      "test_paths": [
+        "full-system-tester/tasks/002-demo-items.md"
+      ],
+      "required_generated": [
+        "docs/system/generated/harness-graph.json"
+      ],
+      "fst_task_path": "full-system-tester/tasks/002-demo-items.md"
+    },
     "system.lhf-core": {
       "id": "system.lhf-core",
       "title": "Living Harness Core",
@@ -38,18 +58,26 @@
         ".cursor",
         ".github",
         "docs/system",
-        "docs/specs",
+        "docs/specs/_LHF-CORE.md",
+        "docs/specs/_TEMPLATE.md",
+        "docs/specs/registry.json",
+        "docs/specs/registry.schema.json",
         "docs/operations",
         "scripts",
-        "packages/shared",
+        "packages/shared/package.json",
+        "packages/shared/tsconfig.json",
+        "packages/shared/src/harness.ts",
+        "packages/shared/src/index.ts",
         "workers/brain",
         "workers/api/package.json",
         "workers/api/tsconfig.json",
-        "apps/web",
-        "supabase",
-        "full-system-tester"
+        "full-system-tester/CLAUDE.md",
+        "full-system-tester/tasks/000-lhf-kernel-health.md",
+        "full-system-tester/templates"
       ],
-      "test_paths": [],
+      "test_paths": [
+        "tests/lhf"
+      ],
       "required_generated": [
         "docs/specs/registry.json",
         "docs/system/generated/harness-graph.json"

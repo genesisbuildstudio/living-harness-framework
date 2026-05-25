@@ -1,9 +1,11 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
+export const ROOT = process.env.LHF_ROOT
+  ? resolve(process.env.LHF_ROOT)
+  : join(dirname(fileURLToPath(import.meta.url)), "../..");
 export const REGISTRY_PATH = "docs/specs/registry.json";
 
 export function normalizePath(path) {
@@ -138,4 +140,3 @@ export function mapPathsToContracts(paths, registry = loadRegistry()) {
     })).sort((a, b) => a.id.localeCompare(b.id)),
   };
 }
-

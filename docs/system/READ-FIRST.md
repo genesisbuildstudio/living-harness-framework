@@ -14,6 +14,8 @@ This repo uses Living Harness Framework.
 | Security model | `docs/system/SECURITY-MODEL.md` |
 | Observability model | `docs/system/OBSERVABILITY.md` |
 | Project adaptation | `docs/system/ADAPTATION-GUIDE.md` |
+| Public release checklist | `docs/system/PUBLICATION-CHECKLIST.md` |
+| Upgrade policy | `docs/system/UPGRADE-POLICY.md` |
 | Feature contracts | `docs/specs/registry.json` |
 | Work queue | `docs/operations/BACKLOG.md` |
 | Harness graph | `docs/system/generated/harness-graph.json` |
@@ -22,9 +24,12 @@ This repo uses Living Harness Framework.
 
 ```bash
 pnpm lhf:session-start --scope "<work>"
+pnpm lhf:init --name "<Project Name>" --slug "<project-slug>"
+pnpm lhf:episode --task "<id>" --status pass --proof "<proof>"
 pnpm lhf:impact --changed
 pnpm lhf:harness-graph --check
 pnpm lhf:check-ai-surfaces
+pnpm lhf:check-github-actions
 pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
 pnpm lhf:check-wrangler

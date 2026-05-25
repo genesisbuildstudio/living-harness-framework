@@ -21,6 +21,12 @@ This starter begins intentionally small.
 | --- | --- | --- |
 | Supabase | `supabase/migrations` | Postgres schema migrations |
 
+## Reference Flows
+
+| Flow | Paths |
+| --- | --- |
+| Demo items | `apps/web/src/index.ts`, `workers/api/src/index.ts`, `public.lhf_demo_items` |
+
 ## Proof
 
 | Proof Surface | Path |

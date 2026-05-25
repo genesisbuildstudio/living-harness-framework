@@ -29,6 +29,19 @@
       "drift": "current"
     },
     {
+      "id": "fst_task:002-demo-items",
+      "kind": "fst_task",
+      "label": "002-demo-items",
+      "path": "full-system-tester/tasks/002-demo-items.md",
+      "sourceRefs": [
+        {
+          "path": "full-system-tester/tasks/002-demo-items.md"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
       "id": "migration:20260525000000_initial_lhf.sql",
       "kind": "migration",
       "label": "20260525000000_initial_lhf.sql",
@@ -50,6 +63,19 @@
       "sourceRefs": [
         {
           "path": "apps/web/src/index.ts"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
+      "id": "spec:feature.demo-items",
+      "kind": "spec",
+      "label": "Demo Items Reference Flow",
+      "path": "docs/specs/features/demo-items.md",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
         }
       ],
       "proofStatus": "partial",
@@ -167,6 +193,19 @@
       "drift": "current"
     },
     {
+      "id": "table:supabase:lhf_demo_items",
+      "kind": "table",
+      "label": "lhf_demo_items",
+      "path": "supabase/migrations/20260525000000_initial_lhf.sql",
+      "sourceRefs": [
+        {
+          "path": "supabase/migrations/20260525000000_initial_lhf.sql"
+        }
+      ],
+      "proofStatus": "partial",
+      "drift": "current"
+    },
+    {
       "id": "worker:api",
       "kind": "worker",
       "label": "api",
@@ -200,6 +239,17 @@
       "sourceRefs": [
         {
           "path": "full-system-tester/tasks/001-health-api.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:governs:spine:proof_spine:fst_task:002-demo-items",
+      "from": "spine:proof_spine",
+      "to": "fst_task:002-demo-items",
+      "kind": "governs",
+      "sourceRefs": [
+        {
+          "path": "full-system-tester/tasks/002-demo-items.md"
         }
       ]
     },
@@ -248,6 +298,17 @@
       ]
     },
     {
+      "id": "edge:implements:file:apps/web/src/index.ts:spec:feature.demo-items",
+      "from": "file:apps/web/src/index.ts",
+      "to": "spec:feature.demo-items",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:CLAUDE.md:spec:system.lhf-core",
       "from": "file:CLAUDE.md",
       "to": "spec:system.lhf-core",
@@ -270,6 +331,72 @@
       ]
     },
     {
+      "id": "edge:implements:file:docs/specs/_LHF-CORE.md:spec:system.lhf-core",
+      "from": "file:docs/specs/_LHF-CORE.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:docs/specs/_TEMPLATE.md:spec:system.lhf-core",
+      "from": "file:docs/specs/_TEMPLATE.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:docs/specs/registry.json:spec:system.lhf-core",
+      "from": "file:docs/specs/registry.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:docs/specs/registry.schema.json:spec:system.lhf-core",
+      "from": "file:docs/specs/registry.schema.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:full-system-tester/CLAUDE.md:spec:system.lhf-core",
+      "from": "file:full-system-tester/CLAUDE.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:full-system-tester/tasks/000-lhf-kernel-health.md:spec:system.lhf-core",
+      "from": "file:full-system-tester/tasks/000-lhf-kernel-health.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:LICENSE:spec:system.lhf-core",
       "from": "file:LICENSE",
       "to": "spec:system.lhf-core",
@@ -283,6 +410,61 @@
     {
       "id": "edge:implements:file:package.json:spec:system.lhf-core",
       "from": "file:package.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:packages/shared/package.json:spec:system.lhf-core",
+      "from": "file:packages/shared/package.json",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:packages/shared/src/harness.ts:spec:system.lhf-core",
+      "from": "file:packages/shared/src/harness.ts",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:packages/shared/src/index.ts:spec:system.lhf-core",
+      "from": "file:packages/shared/src/index.ts",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:packages/shared/src/observability.ts:spec:feature.demo-items",
+      "from": "file:packages/shared/src/observability.ts",
+      "to": "spec:feature.demo-items",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:packages/shared/tsconfig.json:spec:system.lhf-core",
+      "from": "file:packages/shared/tsconfig.json",
       "to": "spec:system.lhf-core",
       "kind": "implements",
       "sourceRefs": [
@@ -336,6 +518,17 @@
       ]
     },
     {
+      "id": "edge:implements:file:supabase/migrations/20260525000000_initial_lhf.sql:spec:feature.demo-items",
+      "from": "file:supabase/migrations/20260525000000_initial_lhf.sql",
+      "to": "spec:feature.demo-items",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:tsconfig.base.json:spec:system.lhf-core",
       "from": "file:tsconfig.base.json",
       "to": "spec:system.lhf-core",
@@ -358,6 +551,17 @@
       ]
     },
     {
+      "id": "edge:implements:file:workers/api/src/index.ts:spec:feature.demo-items",
+      "from": "file:workers/api/src/index.ts",
+      "to": "spec:feature.demo-items",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:workers/api/src/index.ts:spec:feature.health-api",
       "from": "file:workers/api/src/index.ts",
       "to": "spec:feature.health-api",
@@ -376,6 +580,17 @@
       "sourceRefs": [
         {
           "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
+      "id": "edge:implements:file:workers/api/wrangler.jsonc:spec:feature.demo-items",
+      "from": "file:workers/api/wrangler.jsonc",
+      "to": "spec:feature.demo-items",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
         }
       ]
     },
@@ -411,28 +626,39 @@
           "path": "docs/specs/_LHF-CORE.md"
         }
       ]
+    },
+    {
+      "id": "edge:tests:fst_task:002-demo-items:spec:feature.demo-items",
+      "from": "fst_task:002-demo-items",
+      "to": "spec:feature.demo-items",
+      "kind": "tests",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/features/demo-items.md"
+        }
+      ]
     }
   ],
   "findings": [],
   "stats": {
-    "totalNodes": 14,
-    "totalEdges": 21,
+    "totalNodes": 17,
+    "totalEdges": 38,
     "nodesByKind": {
-      "fst_task": 2,
+      "fst_task": 3,
       "migration": 1,
       "web_route": 1,
-      "spec": 2,
+      "spec": 3,
       "lhf_spine": 6,
-      "table": 1,
+      "table": 2,
       "worker": 1
     },
     "edgesByKind": {
-      "governs": 3,
-      "implements": 16,
-      "tests": 2
+      "governs": 4,
+      "implements": 31,
+      "tests": 3
     },
-    "trackedFileCount": 73,
+    "trackedFileCount": 91,
     "workerCount": 1,
-    "fstTaskCount": 2
+    "fstTaskCount": 3
   }
 }

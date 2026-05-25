@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "lhf-episode/v1",
+  "createdAt": "2026-05-25T18:52:37.731Z",
+  "task": "LHF-v0.2-world-class-hardening",
+  "status": "pass",
+  "commands": [
+    "pnpm test",
+    "pnpm typecheck",
+    "pnpm lhf:session-close --changed --check",
+    "curl http://127.0.0.1:8787/demo/items"
+  ],
+  "changedFiles": [
+    "scripts/lhf/init-project.mjs",
+    "scripts/lhf/episode.mjs",
+    "workers/api/src/index.ts",
+    "docs/specs/features/demo-items.md"
+  ],
+  "proof": [
+    "Node self-tests: 5/5 pass",
+    "TypeScript typecheck passed",
+    "LHF session-close passed",
+    "GET /demo/items returned 200 sample data with correlationId"
+  ],
+  "notes": []
+}
