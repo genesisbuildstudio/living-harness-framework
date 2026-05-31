@@ -20,7 +20,9 @@ Public docs: https://genesisbuildstudio.github.io/living-harness-framework/
 pnpm create living-harness my-app --name "My App"
 cd my-app
 pnpm install
+pnpm lhf:onboard --name "My App" --slug "my-app" --platform codex --cloudflare --supabase --write
 pnpm lhf:session-start --scope "first app setup"
+pnpm lhf:doctor
 pnpm lhf:harness-graph
 pnpm lhf:session-close --changed --check
 ```
@@ -40,6 +42,9 @@ Framework rules while helping me build this app.
 - Harness graph generator: `scripts/lhf/harness-graph.mjs`
 - Project initializer: `scripts/lhf/init-project.mjs`
 - Upgrade manifest checker: `scripts/lhf/upgrade.mjs`
+- First-run onboarding receipt: `scripts/lhf/onboard.mjs`
+- Readiness doctor: `scripts/lhf/doctor.mjs`
+- Local benchmark and agent conformance score: `scripts/lhf/benchmark.mjs`, `scripts/lhf/agent-conformance.mjs`
 - Create package: `packages/create-living-harness/`
 - Episode receipt writer: `scripts/lhf/episode.mjs`
 - Executable FST runner: `scripts/lhf/fst-run.mjs`
@@ -76,8 +81,13 @@ pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
 pnpm lhf:check-supabase-tests
 pnpm lhf:check-wrangler
+pnpm lhf:doctor
+pnpm lhf:benchmark
+pnpm lhf:agent-conformance
 pnpm lhf:fst --task 000-lhf-kernel-health
 pnpm lhf:upgrade --check
+pnpm lhf:upgrade --source <template-root> --diff
+pnpm lhf:upgrade --rollback <receipt>
 pnpm lhf:session-close --changed --check
 ```
 

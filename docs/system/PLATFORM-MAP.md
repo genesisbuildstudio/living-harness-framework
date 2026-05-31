@@ -34,6 +34,9 @@ This starter begins intentionally small.
 | FST-lite tasks | `full-system-tester/tasks` |
 | Specs registry | `docs/specs/registry.json` |
 | Harness graph | `docs/system/generated/harness-graph.json` |
+| Doctor | `scripts/lhf/doctor.mjs` |
+| Benchmark | `scripts/lhf/benchmark.mjs` |
+| Agent conformance | `scripts/lhf/agent-conformance.mjs` |
 
 ## AI Platform Adapters
 
@@ -53,3 +56,10 @@ This starter begins intentionally small.
 | Hosted docs | `docs-site/index.html` |
 | npm release workflow | `.github/workflows/release-npm.yml` |
 | Pages workflow | `.github/workflows/pages.yml` |
+
+## Examples
+
+| Example | Path |
+| --- | --- |
+| Cloudflare + Supabase CRUD | `examples/cloudflare-supabase-crud` |
+| AI assistant | `examples/ai-assistant` |

@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const DEFAULT_TEMPLATE_REPO = "https://github.com/living-harness/framework.git";
+const DEFAULT_TEMPLATE_REPO = "https://github.com/genesisbuildstudio/living-harness-framework.git";
 const SKIP = new Set([".git", "node_modules", "dist", ".wrangler", ".turbo"]);
 
 function parseArgs(argv) {

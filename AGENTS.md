@@ -49,6 +49,7 @@ for the same fact.
 - Use `pnpm`, not npm or yarn.
 - Do not commit secrets.
 - Do not add duplicate registries, dashboards, or source-of-truth docs.
+- Do not create duplicate systems; consolidate or extend the owning spine.
 - Do not silently delete files, tables, routes, or workflows. Propose cleanup.
 - Do not add runtime paths without typed errors and observable failure states.
 - Do not increase token/cost surfaces without a measured quality reason.

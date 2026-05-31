@@ -5,6 +5,16 @@
       "command": "pnpm lhf:init --name \"<Project Name>\" --slug \"<project-slug>\"",
       "status": "ACTIVE"
     },
+    "onboard": {
+      "path": "scripts/lhf/onboard.mjs",
+      "command": "pnpm lhf:onboard --name \"<Project Name>\" --slug \"<project-slug>\" --write",
+      "status": "ACTIVE"
+    },
+    "doctor": {
+      "path": "scripts/lhf/doctor.mjs",
+      "command": "pnpm lhf:doctor",
+      "status": "ACTIVE"
+    },
     "episode": {
       "path": "scripts/lhf/episode.mjs",
       "command": "pnpm lhf:episode --task \"<id>\" --status pass --proof \"<proof>\"",
@@ -13,6 +23,16 @@
     "fst-run": {
       "path": "scripts/lhf/fst-run.mjs",
       "command": "pnpm lhf:fst --task 000-lhf-kernel-health",
+      "status": "ACTIVE"
+    },
+    "benchmark": {
+      "path": "scripts/lhf/benchmark.mjs",
+      "command": "pnpm lhf:benchmark",
+      "status": "ACTIVE"
+    },
+    "agent-conformance": {
+      "path": "scripts/lhf/agent-conformance.mjs",
+      "command": "pnpm lhf:agent-conformance",
       "status": "ACTIVE"
     },
     "upgrade": {

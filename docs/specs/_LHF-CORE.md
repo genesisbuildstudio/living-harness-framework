@@ -16,6 +16,7 @@ source_paths:
     package.json,
     packages/create-living-harness,
     docs-site,
+    examples,
     pnpm-lock.yaml,
     pnpm-workspace.yaml,
     tsconfig.base.json,

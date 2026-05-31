@@ -7,7 +7,8 @@ be enforced by scripts, tests, review, or runtime proof.
 2. **Spec Before Behavior:** New behavior needs a spec or spec update.
 3. **Graph Before Claims:** Claims about repo structure cite the harness graph.
 4. **Proof Before Done:** Completion requires CI/FST/runtime/admin proof.
-5. **No Duplicate Frameworks:** New systems must consolidate, not fork.
+5. **No Duplicate Frameworks:** New systems must consolidate, not fork. Do not
+   create duplicate systems.
 6. **Typed Failure Paths:** Runtime failures use typed errors and user-safe states.
 7. **No Silent Cleanup:** AI proposes cleanup; humans approve deletion.
 8. **Cost Is A Feature:** Token, compute, storage, and vendor cost are tracked.

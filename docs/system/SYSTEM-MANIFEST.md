@@ -8,7 +8,7 @@ This is the human-readable inventory. Generated truth lives in
 | Layer | Default |
 | --- | --- |
 | Package manager | pnpm |
-| Runtime | Node.js 22+ |
+| Runtime | Node.js 22.14+ |
 | App hosting | Cloudflare Workers |
 | Database | Supabase Postgres |
 | CI | GitHub Actions |
@@ -28,6 +28,7 @@ This is the human-readable inventory. Generated truth lives in
 | `supabase` | Database migrations and seed data |
 | `.github` | CI, PR template, Copilot instructions |
 | `.cursor` | Cursor project rule adapter |
+| `examples` | Adaptation examples that keep proof and ownership boundaries |
 
 ## Required Generated Files
 
@@ -36,6 +37,9 @@ This is the human-readable inventory. Generated truth lives in
 
 ## Required Gates
 
+- `pnpm lhf:doctor`
+- `pnpm lhf:benchmark`
+- `pnpm lhf:agent-conformance`
 - `pnpm lhf:check-ai-surfaces`
 - `pnpm lhf:check-branch-protection --repo <owner>/<repo>`
 - `pnpm lhf:check-github-actions`
