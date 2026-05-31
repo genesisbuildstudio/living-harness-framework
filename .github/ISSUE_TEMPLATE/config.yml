@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/genesisbuildstudio/living-harness-framework/security/advisories/new
+    about: Report active vulnerabilities privately.
+  - name: Documentation site
+    url: https://genesisbuildstudio.github.io/living-harness-framework/
+    about: Read the public quick-start before opening a support issue.

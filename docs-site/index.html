@@ -15,8 +15,11 @@
         background: #f8fafc;
         color: #111827;
       }
+      a {
+        color: #075985;
+      }
       main {
-        max-width: 940px;
+        max-width: 1040px;
         margin: 0 auto;
         padding: 56px 24px;
       }
@@ -27,6 +30,24 @@
       }
       h2 {
         margin-top: 36px;
+      }
+      .lede {
+        max-width: 760px;
+        font-size: 1.15rem;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 24px 0;
+      }
+      .actions a {
+        border: 1px solid #0f172a;
+        border-radius: 8px;
+        color: #0f172a;
+        font-weight: 700;
+        padding: 10px 14px;
+        text-decoration: none;
       }
       code, pre {
         background: #e5e7eb;
@@ -52,6 +73,8 @@
       }
       @media (prefers-color-scheme: dark) {
         body { background: #0f172a; color: #e5e7eb; }
+        a { color: #7dd3fc; }
+        .actions a { border-color: #e5e7eb; color: #e5e7eb; }
         .item { background: #111827; border-color: #334155; }
         code, pre { background: #1f2937; }
       }
@@ -60,7 +83,12 @@
   <body>
     <main>
       <h1>Living Harness Framework</h1>
-      <p>AI-native monorepo starter for Cloudflare and Supabase apps.</p>
+      <p class="lede">A production-oriented monorepo starter that gives AI coding agents laws, source-of-truth docs, executable proof gates, and cleanup rules before your app grows into a maze.</p>
+      <div class="actions">
+        <a href="https://github.com/genesisbuildstudio/living-harness-framework">GitHub Template</a>
+        <a href="https://github.com/genesisbuildstudio/living-harness-framework/blob/main/docs/system/READ-FIRST.md">Read First</a>
+        <a href="https://github.com/genesisbuildstudio/living-harness-framework/blob/main/docs/system/RELEASE.md">Release Proof</a>
+      </div>
       <pre><code>pnpm create living-harness my-app --name "My App"</code></pre>
       <h2>What It Gives You</h2>
       <section class="grid">
@@ -68,6 +96,8 @@
         <div class="item"><strong>Truth Graph</strong><br>Generated source/spec/proof map for AI-safe repo changes.</div>
         <div class="item"><strong>Proof Gates</strong><br>Executable FST, session close, impact, and ticket checks.</div>
         <div class="item"><strong>Cloudflare + Supabase</strong><br>Worker, RLS, pgTAP-style tests, and config hardening.</div>
+        <div class="item"><strong>Public Release</strong><br>Trusted-publishing workflow, immutable release checks, and install proof.</div>
+        <div class="item"><strong>Maintenance</strong><br>Dependabot, CodeQL, branch protection, support policy, and security reporting.</div>
       </section>
       <h2>Core Commands</h2>
       <pre><code>pnpm lhf:init --name "My App" --slug "my-app"

@@ -1,11 +1,18 @@
 # Living Harness Framework
 
+[![CI](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/ci.yml)
+[![LHF Health](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/lhf-health.yml/badge.svg)](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/lhf-health.yml)
+[![CodeQL](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/codeql.yml/badge.svg)](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/codeql.yml)
+[![Pages](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/pages.yml/badge.svg)](https://github.com/genesisbuildstudio/living-harness-framework/actions/workflows/pages.yml)
+
 AI-native monorepo starter for Cloudflare + Supabase apps.
 
 Living Harness Framework (LHF) gives AI coding agents a governed repo structure:
 laws, specs, graph truth, ticket contracts, proof gates, and cleanup rules. The
 goal is not to slow development down. The goal is to keep AI-built software
 coherent as it grows.
+
+Public docs: https://genesisbuildstudio.github.io/living-harness-framework/
 
 ## Quick Start
 
@@ -44,6 +51,8 @@ Framework rules while helping me build this app.
 - Complete reference flow: `GET /demo/items` + `public.lhf_demo_items`
 - FST-lite proof tasks: `full-system-tester/`
 - GitHub Actions and PR template: `.github/`
+- Public project hygiene: security policy, support policy, code of conduct,
+  issue templates, CODEOWNERS, branch-protection verifier, release workflow
 
 ## Use As A Template
 
@@ -76,3 +85,9 @@ pnpm lhf:session-close --changed --check
 
 This is a framework kernel. It intentionally does not include app-specific
 branding, business logic, private data, secrets, or production credentials.
+
+## Release Status
+
+The public GitHub template is live. npm publishing is intentionally gated behind
+npm trusted publishing and release-tag verification. See
+`docs/system/RELEASE.md` before publishing a package version.

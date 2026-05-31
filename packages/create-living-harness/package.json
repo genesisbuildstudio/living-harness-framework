@@ -1,7 +1,27 @@
 {
   "name": "create-living-harness",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Create a Living Harness Framework Cloudflare + Supabase monorepo",
+  "keywords": [
+    "ai",
+    "ai-coding",
+    "cloudflare",
+    "supabase",
+    "monorepo",
+    "starter",
+    "template",
+    "governance",
+    "harness"
+  ],
+  "homepage": "https://genesisbuildstudio.github.io/living-harness-framework/",
+  "bugs": {
+    "url": "https://github.com/genesisbuildstudio/living-harness-framework/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genesisbuildstudio/living-harness-framework.git",
+    "directory": "packages/create-living-harness"
+  },
   "type": "module",
   "bin": {
     "create-living-harness": "./bin/create-living-harness.mjs"
@@ -17,7 +37,7 @@
     "test": "node --check bin/create-living-harness.mjs"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.14"
   },
   "license": "MIT",
   "publishConfig": {
