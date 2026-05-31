@@ -24,9 +24,16 @@ LHF must be safe to adopt without trapping projects on one starter version.
 1. Compares manifest-owned framework files against a source template.
 2. Restores missing framework files.
 3. Updates changed framework files.
-4. Writes an `lhf-upgrade-receipt/v1` receipt under `docs/operations/episodes`.
+4. Backs up changed or restored target files.
+5. Writes an `lhf-upgrade-receipt/v1` receipt under `docs/operations/episodes`.
 
 It only touches files listed in `.lhf/manifest.json`.
+
+`pnpm lhf:upgrade --source <template-root> --diff` previews the exact
+framework-owned file changes without mutating the project.
+
+`pnpm lhf:upgrade --rollback <receipt>` restores files from an upgrade receipt
+backup and deletes files that the upgrade restored into existence.
 
 ## Current Manual Upgrade
 

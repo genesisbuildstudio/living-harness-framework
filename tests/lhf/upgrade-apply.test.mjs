@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -40,4 +40,61 @@ test("upgrade apply copies framework-owned files from source and writes a receip
   assert.equal(readFileSync(join(target, "AGENTS.md"), "utf8"), "source agents\n");
   assert.equal(readFileSync(join(target, "docs/system/READ-FIRST.md"), "utf8"), "source read first\n");
   assert.match(result.stdout, /applied/);
+});
+
+test("upgrade diff previews changes and rollback restores previous files", () => {
+  const source = mkdtempSync(join(tmpdir(), "lhf-upgrade-source-"));
+  const target = mkdtempSync(join(tmpdir(), "lhf-upgrade-target-"));
+  writeManifest(source, ["AGENTS.md", "docs/system/READ-FIRST.md"]);
+  writeManifest(target, ["AGENTS.md", "docs/system/READ-FIRST.md"]);
+  mkdirSync(join(source, "docs/system"), { recursive: true });
+  mkdirSync(join(target, "docs/system"), { recursive: true });
+  writeFileSync(join(source, "AGENTS.md"), "source agents\n");
+  writeFileSync(join(source, "docs/system/READ-FIRST.md"), "source read first\n");
+  writeFileSync(join(target, "AGENTS.md"), "old agents\n");
+
+  const diff = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/upgrade.mjs"),
+    "--root",
+    target,
+    "--source",
+    source,
+    "--diff",
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(diff.status, 1);
+  const preview = JSON.parse(diff.stdout);
+  assert.equal(preview.action, "diff");
+  assert.equal(preview.planned.length, 2);
+  assert.ok(preview.planned.every((item) => typeof item.patch === "string"));
+
+  const apply = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/upgrade.mjs"),
+    "--root",
+    target,
+    "--source",
+    source,
+    "--apply",
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(apply.status, 0, apply.stderr || apply.stdout);
+  const applied = JSON.parse(apply.stdout);
+  assert.equal(readFileSync(join(target, "AGENTS.md"), "utf8"), "source agents\n");
+  assert.equal(readFileSync(join(target, "docs/system/READ-FIRST.md"), "utf8"), "source read first\n");
+  assert.ok(existsSync(applied.receipt.backupDir));
+
+  const rollback = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/upgrade.mjs"),
+    "--root",
+    target,
+    "--rollback",
+    applied.path,
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(rollback.status, 0, rollback.stderr || rollback.stdout);
+  assert.equal(readFileSync(join(target, "AGENTS.md"), "utf8"), "old agents\n");
+  assert.equal(existsSync(join(target, "docs/system/READ-FIRST.md")), false);
 });

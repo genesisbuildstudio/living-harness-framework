@@ -90,6 +90,12 @@
         <a href="https://github.com/genesisbuildstudio/living-harness-framework/blob/main/docs/system/RELEASE.md">Release Proof</a>
       </div>
       <pre><code>pnpm create living-harness my-app --name "My App"</code></pre>
+      <h2>First Ten Minutes</h2>
+      <pre><code>cd my-app
+pnpm install
+pnpm lhf:onboard --name "My App" --slug "my-app" --platform codex --cloudflare --supabase --write
+pnpm lhf:doctor
+pnpm lhf:session-close --changed --check</code></pre>
       <h2>What It Gives You</h2>
       <section class="grid">
         <div class="item"><strong>Agent Contract</strong><br>Shared instructions for Codex, Claude Code, Copilot, and Cursor.</div>
@@ -98,10 +104,14 @@
         <div class="item"><strong>Cloudflare + Supabase</strong><br>Worker, RLS, pgTAP-style tests, and config hardening.</div>
         <div class="item"><strong>Public Release</strong><br>Trusted-publishing workflow, immutable release checks, and install proof.</div>
         <div class="item"><strong>Maintenance</strong><br>Dependabot, CodeQL, branch protection, support policy, and security reporting.</div>
+        <div class="item"><strong>Benchmarking</strong><br>Local harness score, agent conformance score, and receipt-backed proof.</div>
+        <div class="item"><strong>Upgrades</strong><br>Diff, apply, backup, and rollback for framework-owned files.</div>
       </section>
       <h2>Core Commands</h2>
       <pre><code>pnpm lhf:init --name "My App" --slug "my-app"
 pnpm lhf:fst --task all
+pnpm lhf:benchmark
+pnpm lhf:agent-conformance
 pnpm lhf:session-close --changed --check</code></pre>
     </main>
   </body>

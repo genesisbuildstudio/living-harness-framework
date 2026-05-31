@@ -13,6 +13,8 @@ This repo uses Living Harness Framework.
 | AI platform adapters | `docs/system/AI-CODING-PLATFORM-GUIDE.md` |
 | Security model | `docs/system/SECURITY-MODEL.md` |
 | Observability model | `docs/system/OBSERVABILITY.md` |
+| First-run setup | `docs/system/FIRST-RUN.md` |
+| Benchmarks | `docs/system/BENCHMARKS.md` |
 | Project adaptation | `docs/system/ADAPTATION-GUIDE.md` |
 | Public release checklist | `docs/system/PUBLICATION-CHECKLIST.md` |
 | Release playbook | `docs/system/RELEASE.md` |
@@ -25,9 +27,13 @@ This repo uses Living Harness Framework.
 
 ```bash
 pnpm lhf:session-start --scope "<work>"
+pnpm lhf:onboard --name "<Project Name>" --slug "<project-slug>" --write
 pnpm lhf:init --name "<Project Name>" --slug "<project-slug>"
+pnpm lhf:doctor
 pnpm lhf:episode --task "<id>" --status pass --proof "<proof>"
 pnpm lhf:fst --task 000-lhf-kernel-health
+pnpm lhf:benchmark
+pnpm lhf:agent-conformance
 pnpm lhf:upgrade --check
 pnpm lhf:check-branch-protection --repo <owner>/<repo>
 pnpm lhf:impact --changed

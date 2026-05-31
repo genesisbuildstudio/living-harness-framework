@@ -7,6 +7,12 @@ import test from "node:test";
 
 const repoRoot = resolve(import.meta.dirname, "../..");
 
+test("create-living-harness default clone target uses the public template repo", () => {
+  const body = readFileSync(join(repoRoot, "packages/create-living-harness/bin/create-living-harness.mjs"), "utf8");
+  assert.match(body, /https:\/\/github\.com\/genesisbuildstudio\/living-harness-framework\.git/);
+  assert.doesNotMatch(body, /github\.com\/living-harness\/framework\.git/);
+});
+
 test("create-living-harness copies a local template and runs init", () => {
   const source = mkdtempSync(join(tmpdir(), "lhf-template-"));
   const targetRoot = mkdtempSync(join(tmpdir(), "lhf-create-"));
