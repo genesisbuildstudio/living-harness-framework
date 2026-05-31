@@ -18,11 +18,13 @@ This repository publishes two surfaces:
 
 ## npm Trusted Publishing
 
-Current npm trusted publishing requires npm CLI 11.5.1+ and Node 22.14.0+.
-The GitHub Actions release workflow uses Node 24 and installs npm 11.5.1 before
+Current npm trusted publishing requires npm CLI 11.10.0+ and Node 22.14.0+.
+The GitHub Actions release workflow uses Node 24 and installs npm 11.16.0 before
 publishing.
 
-If the package already exists on npm and the authenticated npm owner has the
+The package must already exist on npm, and the authenticated npm owner must have
+account-level 2FA enabled before `npm trust` can configure GitHub Actions as a
+trusted publisher. If the package already exists and the npm owner has the
 required permissions, configure the trust relationship with:
 
 ```bash
