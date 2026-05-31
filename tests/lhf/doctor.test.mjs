@@ -17,7 +17,7 @@ test("doctor reports missing required framework files as actionable failures", (
   writeFileSync(join(root, "pnpm-workspace.yaml"), "packages: []\n");
   writeFileSync(join(root, ".lhf/manifest.json"), `${JSON.stringify({
     schemaVersion: "lhf-manifest/v1",
-    version: "0.4.1",
+    version: "0.4.2",
     frameworkFiles: ["AGENTS.md"],
   }, null, 2)}\n`);
 
@@ -60,7 +60,7 @@ test("doctor treats a fresh non-git download as a warning", () => {
   writeFileSync(join(root, "pnpm-workspace.yaml"), "packages: []\n");
   writeFileSync(join(root, ".lhf/manifest.json"), `${JSON.stringify({
     schemaVersion: "lhf-manifest/v1",
-    version: "0.4.1",
+    version: "0.4.2",
     frameworkFiles: [],
   }, null, 2)}\n`);
   for (const file of ["AGENTS.md", "CLAUDE.md", ".github/copilot-instructions.md", ".cursor/rules/lhf-core.mdc"]) {
