@@ -33,5 +33,13 @@ pnpm lhf:check-supabase-tests
 
 ## Reporting Issues
 
-For public projects, replace this section with your security contact and
-disclosure policy before launch.
+Report suspected vulnerabilities through GitHub private vulnerability reporting
+for this repository when available. If GitHub private reporting is unavailable,
+email `security@genesis.build` with:
+
+- affected package or path,
+- reproducible impact,
+- affected version or commit,
+- proof-of-concept steps that avoid harming other users.
+
+Do not open public issues for active vulnerabilities.

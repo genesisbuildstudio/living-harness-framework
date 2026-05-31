@@ -320,6 +320,17 @@
       ]
     },
     {
+      "id": "edge:implements:file:CODE_OF_CONDUCT.md:spec:system.lhf-core",
+      "from": "file:CODE_OF_CONDUCT.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:CONTRIBUTING.md:spec:system.lhf-core",
       "from": "file:CONTRIBUTING.md",
       "to": "spec:system.lhf-core",
@@ -540,6 +551,17 @@
       ]
     },
     {
+      "id": "edge:implements:file:SUPPORT.md:spec:system.lhf-core",
+      "from": "file:SUPPORT.md",
+      "to": "spec:system.lhf-core",
+      "kind": "implements",
+      "sourceRefs": [
+        {
+          "path": "docs/specs/_LHF-CORE.md"
+        }
+      ]
+    },
+    {
       "id": "edge:implements:file:tsconfig.base.json:spec:system.lhf-core",
       "from": "file:tsconfig.base.json",
       "to": "spec:system.lhf-core",
@@ -653,7 +675,7 @@
   "findings": [],
   "stats": {
     "totalNodes": 17,
-    "totalEdges": 39,
+    "totalEdges": 41,
     "nodesByKind": {
       "fst_task": 3,
       "migration": 1,
@@ -665,10 +687,10 @@
     },
     "edgesByKind": {
       "governs": 4,
-      "implements": 32,
+      "implements": 34,
       "tests": 3
     },
-    "trackedFileCount": 113,
+    "trackedFileCount": 117,
     "workerCount": 1,
     "fstTaskCount": 3
   }

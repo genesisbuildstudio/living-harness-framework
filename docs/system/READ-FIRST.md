@@ -15,6 +15,7 @@ This repo uses Living Harness Framework.
 | Observability model | `docs/system/OBSERVABILITY.md` |
 | Project adaptation | `docs/system/ADAPTATION-GUIDE.md` |
 | Public release checklist | `docs/system/PUBLICATION-CHECKLIST.md` |
+| Release playbook | `docs/system/RELEASE.md` |
 | Upgrade policy | `docs/system/UPGRADE-POLICY.md` |
 | Feature contracts | `docs/specs/registry.json` |
 | Work queue | `docs/operations/BACKLOG.md` |
