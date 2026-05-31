@@ -24,7 +24,7 @@
   },
   "type": "module",
   "bin": {
-    "create-living-harness": "./bin/create-living-harness.mjs"
+    "create-living-harness": "bin/create-living-harness.mjs"
   },
   "files": [
     "bin",

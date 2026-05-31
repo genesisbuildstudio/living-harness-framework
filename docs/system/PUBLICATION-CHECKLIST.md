@@ -24,8 +24,9 @@ Use this before publishing LHF as a public GitHub template.
 
 - Enable OpenSSF Scorecard.
 - Publish npm packages with npm trusted publishing. npm currently requires npm
-  CLI 11.5.1+ and Node 22.14.0+ for trusted publishing, and automatically
-  generates provenance for public packages published from public repositories.
+  CLI 11.10.0+, Node 22.14.0+, an existing package, and account-level 2FA for
+  trusted publishing, and automatically generates provenance for public
+  packages published from public repositories.
 - Enable GitHub Pages and confirm the Pages workflow deploys `docs-site/`.
 - Add a demo video or GIF.
 - Add a one-command template setup example.
