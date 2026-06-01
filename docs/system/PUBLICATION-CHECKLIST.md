@@ -15,8 +15,11 @@ Use this before publishing LHF as a public GitHub template.
 - Confirm `pnpm lhf:download-smoke --json` passes against the public template
   repo before telling users to download it.
 - Confirm `pnpm lhf:check-npm-release` passes before publishing a release.
-- Confirm `pnpm lhf:publication-status --json` reports
-  `readyForNpmOwnerAction: true` before first publish.
+- Confirm `pnpm lhf:publication-status --json` reports the correct next npm
+  owner action. Before the first package exists, this must be
+  `readyForInitialPackageBootstrap: true`; after the package exists but before
+  trusted publishing is configured, this must be
+  `readyForTrustedPublisherSetup: true`.
 - Confirm `pnpm lhf:check-branch-protection --repo <owner>/<repo>` passes.
 - Confirm the GitHub Pages documentation site returns HTTP 200.
 - Configure npm trusted publishing for package `create-living-harness`, repo
@@ -33,8 +36,9 @@ Use this before publishing LHF as a public GitHub template.
 - Enable OpenSSF Scorecard.
 - Publish npm packages with npm trusted publishing. npm currently requires npm
   CLI 11.5.1+, Node 22.14.0+, an authenticated npm owner with account-level 2FA,
-  and automatically generates provenance for public packages published from
-  public repositories.
+  and an existing package before `npm trust` can be configured. Trusted
+  publishing automatically generates provenance for public packages published
+  from public repositories.
 - Enable GitHub Pages and confirm the Pages workflow deploys `docs-site/`.
 - Add a demo video or GIF.
 - Add a one-command template setup example.

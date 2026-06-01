@@ -24,13 +24,21 @@ function readJson(path) {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
+function normalizeResult(result) {
+  return {
+    status: Number.isInteger(result?.status) ? result.status : 1,
+    stdout: String(result?.stdout ?? ""),
+    stderr: String(result?.stderr ?? ""),
+  };
+}
+
 function run(root, command, args) {
   const result = spawnSync(command, args, { cwd: root, encoding: "utf8" });
-  return {
+  return normalizeResult({
     status: result.status ?? 1,
     stdout: result.stdout ?? "",
     stderr: result.stderr ?? result.error?.message ?? "",
-  };
+  });
 }
 
 function print(payload, json) {
@@ -41,12 +49,14 @@ function print(payload, json) {
   console.log(`LHF Publication Status: ${payload.ok ? "PASS" : "BLOCKED"}`);
   console.log(`- package: ${payload.packageName}@${payload.expectedVersion}`);
   console.log(`- release: ${payload.releaseTag}`);
+  console.log(`- package exists: ${payload.packageExists ? "yes" : "no"}`);
   console.log(`- published: ${payload.published ? payload.publishedVersion : "no"}`);
   for (const blocker of payload.blockers) console.log(`- blocker: ${blocker}`);
 }
 
 const args = parseArgs(process.argv.slice(2));
 const root = resolve(String(args.root ?? ROOT));
+const fixture = args.fixture ? readJson(resolve(String(args.fixture))) : null;
 const rootPackagePath = join(root, "package.json");
 const createPackagePath = join(root, "packages/create-living-harness/package.json");
 const failures = [];
@@ -63,15 +73,24 @@ const releaseTag = String(args.release ?? `v${expectedVersion}`);
 const repo = String(args.repo ?? "genesisbuildstudio/living-harness-framework");
 let published = false;
 let publishedVersion = null;
+let packageExists = false;
 let trustedPublisherShapeOk = false;
+
+function external(name, command, commandArgs) {
+  if (fixture?.[name]) return normalizeResult(fixture[name]);
+  return run(root, command, commandArgs);
+}
 
 if (!expectedVersion) failures.push("expected package version missing");
 
 const npm = {
+  packageExists: false,
   published: false,
   version: null,
   authenticatedUser: null,
+  profile: null,
   trustDryRun: null,
+  trustDryRunSkippedReason: null,
 };
 const github = {
   release: null,
@@ -81,51 +100,68 @@ const github = {
 if (args.offline) {
   blockers.push("Network checks skipped; cannot verify npm or GitHub publication state.");
 } else {
-  const npmView = run(root, "npm", ["view", packageName, "version", "--json"]);
+  const npmView = external("npmView", "npm", ["view", packageName, "version", "--json"]);
   if (npmView.status === 0 && npmView.stdout.trim()) {
+    packageExists = true;
     publishedVersion = JSON.parse(npmView.stdout);
     published = publishedVersion === expectedVersion;
+    npm.packageExists = true;
     npm.published = true;
     npm.version = publishedVersion;
     if (!published) blockers.push(`npm has ${packageName}@${publishedVersion}; expected ${expectedVersion}.`);
   } else if (/E404|Not Found/i.test(`${npmView.stderr}\n${npmView.stdout}`)) {
-    blockers.push(`npm package ${packageName} is not published yet.`);
+    blockers.push(`npm package ${packageName} does not exist yet; npm trust cannot be configured until a package exists.`);
   } else {
     blockers.push(`npm package version could not be verified: ${npmView.stderr.trim() || npmView.stdout.trim()}`);
   }
 
-  const whoami = run(root, "npm", ["whoami"]);
+  const whoami = external("whoami", "npm", ["whoami"]);
   if (whoami.status === 0 && whoami.stdout.trim()) {
     npm.authenticatedUser = whoami.stdout.trim();
   } else {
     blockers.push("npm owner auth is not available on this machine.");
   }
 
-  const trustDryRun = run(root, "npm", [
-    "trust",
-    "github",
-    packageName,
-    "--repo",
-    repo,
-    "--file",
-    "release-npm.yml",
-    "--env",
-    "npm-publish",
-    "--allow-publish",
-    "--dry-run",
-    "--json",
-  ]);
-  if (trustDryRun.status === 0 && trustDryRun.stdout.trim()) {
-    npm.trustDryRun = JSON.parse(trustDryRun.stdout);
-    trustedPublisherShapeOk = npm.trustDryRun.package === packageName
-      && npm.trustDryRun.repository === repo
-      && npm.trustDryRun.file === "release-npm.yml"
-      && npm.trustDryRun.environment === "npm-publish";
+  const profile = external("profile", "npm", ["profile", "get", "--json"]);
+  if (profile.status === 0 && profile.stdout.trim()) {
+    npm.profile = JSON.parse(profile.stdout);
+    if (npm.profile.tfa !== true) blockers.push(`npm account ${npm.authenticatedUser ?? "owner"} does not have account-level 2FA enabled.`);
+    if (npm.profile.email_verified !== true) blockers.push(`npm account ${npm.authenticatedUser ?? "owner"} email is not verified.`);
   } else {
-    blockers.push(`npm trusted-publishing dry run failed: ${trustDryRun.stderr.trim() || trustDryRun.stdout.trim()}`);
+    blockers.push(`npm account profile could not be verified: ${profile.stderr.trim() || profile.stdout.trim()}`);
   }
 
-  const release = run(root, "gh", ["release", "view", releaseTag, "--json", "isDraft,isPrerelease,publishedAt,tagName,targetCommitish,url"]);
+  if (!packageExists) {
+    npm.trustDryRunSkippedReason = "Package does not exist yet; npm docs require an existing package before configuring trust.";
+  } else if (npm.profile?.tfa !== true) {
+    npm.trustDryRunSkippedReason = "Account-level 2FA is not enabled; npm docs require 2FA before trust commands.";
+  } else {
+    const trustDryRun = external("trustDryRun", "npm", [
+      "trust",
+      "github",
+      packageName,
+      "--repo",
+      repo,
+      "--file",
+      "release-npm.yml",
+      "--env",
+      "npm-publish",
+      "--allow-publish",
+      "--dry-run",
+      "--json",
+    ]);
+    if (trustDryRun.status === 0 && trustDryRun.stdout.trim()) {
+      npm.trustDryRun = JSON.parse(trustDryRun.stdout);
+      trustedPublisherShapeOk = npm.trustDryRun.package === packageName
+        && npm.trustDryRun.repository === repo
+        && npm.trustDryRun.file === "release-npm.yml"
+        && npm.trustDryRun.environment === "npm-publish";
+    } else {
+      blockers.push(`npm trusted-publishing dry run failed: ${trustDryRun.stderr.trim() || trustDryRun.stdout.trim()}`);
+    }
+  }
+
+  const release = external("release", "gh", ["release", "view", releaseTag, "--json", "isDraft,isPrerelease,publishedAt,tagName,targetCommitish,url"]);
   if (release.status === 0 && release.stdout.trim()) {
     github.release = JSON.parse(release.stdout);
     if (published && github.release.isDraft) blockers.push(`${releaseTag} is still a draft release.`);
@@ -134,7 +170,7 @@ if (args.offline) {
     blockers.push(`GitHub release ${releaseTag} could not be verified: ${release.stderr.trim() || release.stdout.trim()}`);
   }
 
-  const head = run(root, "git", ["rev-parse", "HEAD"]);
+  const head = external("head", "git", ["rev-parse", "HEAD"]);
   if (head.status === 0) github.head = head.stdout.trim();
   if (github.release?.targetCommitish && github.head && github.release.targetCommitish !== github.head) {
     blockers.push(`${releaseTag} targets ${github.release.targetCommitish}; current HEAD is ${github.head}.`);
@@ -142,11 +178,25 @@ if (args.offline) {
 }
 
 const localReady = failures.length === 0;
-const readyForNpmOwnerAction = localReady
+const releaseDraftOnHead = github.release?.isDraft === true
+  && Boolean(github.release?.targetCommitish)
+  && Boolean(github.head)
+  && github.release.targetCommitish === github.head;
+const account2faEnabled = npm.profile?.tfa === true;
+const readyForInitialPackageBootstrap = localReady
+  && !packageExists
+  && Boolean(npm.authenticatedUser)
+  && account2faEnabled
+  && releaseDraftOnHead;
+const readyForTrustedPublisherSetup = localReady
+  && packageExists
   && !published
+  && Boolean(npm.authenticatedUser)
+  && account2faEnabled
   && trustedPublisherShapeOk
-  && github.release?.isDraft === true
-  && github.release?.targetCommitish === github.head;
+  && releaseDraftOnHead;
+const readyForNpmOwnerAction = localReady
+  && (readyForInitialPackageBootstrap || readyForTrustedPublisherSetup);
 const ok = localReady && (args.requirePublished ? published : true);
 const payload = {
   ok,
@@ -156,7 +206,10 @@ const payload = {
   releaseTag,
   published,
   publishedVersion,
+  packageExists,
   readyToPublish: localReady && blockers.length === 0 && !published,
+  readyForInitialPackageBootstrap,
+  readyForTrustedPublisherSetup,
   readyForNpmOwnerAction,
   localReady,
   failures,
