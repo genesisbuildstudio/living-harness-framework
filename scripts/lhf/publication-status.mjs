@@ -81,6 +81,15 @@ function external(name, command, commandArgs) {
   return run(root, command, commandArgs);
 }
 
+function hasAccount2fa(profile) {
+  if (profile?.tfa === true) return true;
+  if (typeof profile?.tfa === "object" && profile.tfa !== null) {
+    const mode = String(profile.tfa.mode ?? "");
+    return profile.tfa.pending === null && (mode === "auth-only" || mode === "auth-and-writes");
+  }
+  return false;
+}
+
 if (!expectedVersion) failures.push("expected package version missing");
 
 const npm = {
@@ -89,6 +98,7 @@ const npm = {
   version: null,
   authenticatedUser: null,
   profile: null,
+  account2faEnabled: false,
   trustDryRun: null,
   trustDryRunSkippedReason: null,
 };
@@ -125,7 +135,8 @@ if (args.offline) {
   const profile = external("profile", "npm", ["profile", "get", "--json"]);
   if (profile.status === 0 && profile.stdout.trim()) {
     npm.profile = JSON.parse(profile.stdout);
-    if (npm.profile.tfa !== true) blockers.push(`npm account ${npm.authenticatedUser ?? "owner"} does not have account-level 2FA enabled.`);
+    npm.account2faEnabled = hasAccount2fa(npm.profile);
+    if (!npm.account2faEnabled) blockers.push(`npm account ${npm.authenticatedUser ?? "owner"} does not have account-level 2FA enabled.`);
     if (npm.profile.email_verified !== true) blockers.push(`npm account ${npm.authenticatedUser ?? "owner"} email is not verified.`);
   } else {
     blockers.push(`npm account profile could not be verified: ${profile.stderr.trim() || profile.stdout.trim()}`);
@@ -133,7 +144,7 @@ if (args.offline) {
 
   if (!packageExists) {
     npm.trustDryRunSkippedReason = "Package does not exist yet; npm docs require an existing package before configuring trust.";
-  } else if (npm.profile?.tfa !== true) {
+  } else if (!npm.account2faEnabled) {
     npm.trustDryRunSkippedReason = "Account-level 2FA is not enabled; npm docs require 2FA before trust commands.";
   } else {
     const trustDryRun = external("trustDryRun", "npm", [
@@ -182,7 +193,7 @@ const releaseDraftOnHead = github.release?.isDraft === true
   && Boolean(github.release?.targetCommitish)
   && Boolean(github.head)
   && github.release.targetCommitish === github.head;
-const account2faEnabled = npm.profile?.tfa === true;
+const account2faEnabled = npm.account2faEnabled;
 const readyForInitialPackageBootstrap = localReady
   && !packageExists
   && Boolean(npm.authenticatedUser)
