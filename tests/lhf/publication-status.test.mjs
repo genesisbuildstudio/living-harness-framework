@@ -243,3 +243,57 @@ test("publication status detects configured trusted publisher for next GitHub re
   assert.equal(payload.readyForNpmOwnerAction, true);
   assert.match(payload.blockers.join("\n"), /npm has create-living-harness@0.4.3; expected 0.4.4/);
 });
+
+test("publication status skips trust list after expected version is published", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-publication-status-published-"));
+  writeFixture(root, "0.4.5");
+  const fixture = join(root, "fixture.json");
+  writeFileSync(fixture, `${JSON.stringify({
+    npmView: { status: 0, stdout: JSON.stringify("0.4.5"), stderr: "" },
+    whoami: { status: 0, stdout: "genesisbuild\n", stderr: "" },
+    profile: {
+      status: 0,
+      stdout: JSON.stringify({
+        tfa: { pending: null, mode: "auth-and-writes" },
+        email_verified: true,
+      }),
+      stderr: "",
+    },
+    trustList: {
+      status: 1,
+      stdout: "",
+      stderr: "npm error code EOTP",
+    },
+    release: {
+      status: 0,
+      stdout: JSON.stringify({
+        isDraft: false,
+        isPrerelease: false,
+        publishedAt: "2026-06-01T14:44:49Z",
+        tagName: "v0.4.5",
+        targetCommitish: "abc123",
+        url: "https://github.com/genesisbuildstudio/living-harness-framework/releases/tag/v0.4.5",
+      }),
+      stderr: "",
+    },
+    head: { status: 0, stdout: "abc123\n", stderr: "" },
+  }, null, 2)}\n`);
+
+  const result = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/publication-status.mjs"),
+    "--root",
+    root,
+    "--fixture",
+    fixture,
+    "--require-published",
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const payload = JSON.parse(result.stdout);
+  assert.equal(payload.published, true);
+  assert.equal(payload.npm.trustList, null);
+  assert.match(payload.npm.trustListSkippedReason, /already published/);
+  assert.match(payload.npm.trustDryRunSkippedReason, /already published/);
+  assert.deepEqual(payload.blockers, []);
+});
