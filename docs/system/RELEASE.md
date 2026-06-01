@@ -18,14 +18,19 @@ This repository publishes two surfaces:
 
 ## npm Trusted Publishing
 
-Current npm trusted publishing requires npm CLI 11.5.1+ and Node 22.14.0+.
+Current npm trusted publishing requires npm CLI 11.5.1+ and Node 22.14.0+; the
+`npm trust` CLI additionally requires account-level 2FA and an existing package.
+Source: <https://docs.npmjs.com/cli/v11/commands/npm-trust/>.
 The GitHub Actions release workflow uses Node 24 and installs npm 11.16.0 before
 publishing.
 
 An authenticated npm owner with account-level 2FA must configure GitHub Actions
-as a trusted publisher before the release can be published. For a first-time
-package publish, npm 11.16 reports the trust grant as `createPackage`; after the
-package exists, the same relationship authorizes `npm publish`.
+as a trusted publisher before normal releases can be published. If
+`create-living-harness` does not exist yet, do not pretend the trusted publisher
+is ready. Bootstrap the first package version explicitly, then configure trusted
+publishing, then publish the next version through GitHub Actions so provenance is
+attached by the trusted publisher flow. Source:
+<https://docs.npmjs.com/trusted-publishers/>.
 
 Configure the trust relationship with:
 
@@ -45,6 +50,32 @@ package `create-living-harness`, repository
 
 After the first successful trusted publish, restrict token publishing for the
 package and publish future releases only through GitHub Actions.
+
+## First Package Bootstrap
+
+Use this only when `npm view create-living-harness version` returns 404 and
+`pnpm lhf:publication-status --json` reports
+`readyForInitialPackageBootstrap: true`.
+
+1. Enable account-level 2FA on the npm owner account and save recovery codes
+   outside the repository.
+2. Dry-run the exact package:
+
+   ```bash
+   pnpm --dir packages/create-living-harness pack --pack-destination /tmp/lhf-pack
+   (cd packages/create-living-harness && npm publish --access public --dry-run)
+   ```
+
+3. Publish the bootstrap version only after owner confirmation:
+
+   ```bash
+   (cd packages/create-living-harness && npm publish --access public)
+   ```
+
+4. Configure trusted publishing with the command below.
+5. Bump the package to the next patch version and publish that version through
+   `.github/workflows/release-npm.yml`; this is the first fully trusted
+   publishing release.
 
 ## Pre-Publish Proof
 

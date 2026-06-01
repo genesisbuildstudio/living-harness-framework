@@ -106,7 +106,7 @@ The public GitHub template is live. npm publishing is intentionally gated behind
 npm trusted publishing and release-tag verification. See
 `docs/system/RELEASE.md` before publishing a package version.
 Use `pnpm lhf:publication-status --json` to verify the current npm/GitHub
-publish state before and after release, including whether the draft release is
-ready for the npm owner action.
+publish state before and after release, including whether the next npm owner
+action is first-package bootstrap or trusted-publisher setup.
 Use `pnpm lhf:download-smoke --json` to prove a clean downloaded copy can run
 the starter health checks.

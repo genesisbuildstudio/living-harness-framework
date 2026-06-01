@@ -57,3 +57,84 @@ test("publication status require-published fails before npm publication", () => 
   assert.equal(payload.published, false);
   assert.equal(payload.readyToPublish, false);
 });
+
+test("publication status blocks npm owner action until account-level 2FA is enabled", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-publication-status-2fa-"));
+  writeFixture(root);
+  const fixture = join(root, "fixture.json");
+  writeFileSync(fixture, `${JSON.stringify({
+    npmView: { status: 1, stdout: "", stderr: "npm error code E404" },
+    whoami: { status: 0, stdout: "genesisbuild\n", stderr: "" },
+    profile: { status: 0, stdout: JSON.stringify({ tfa: false, email_verified: true }), stderr: "" },
+    release: {
+      status: 0,
+      stdout: JSON.stringify({
+        isDraft: true,
+        isPrerelease: false,
+        publishedAt: null,
+        tagName: "v0.4.3",
+        targetCommitish: "abc123",
+        url: "https://github.com/genesisbuildstudio/living-harness-framework/releases/tag/v0.4.3",
+      }),
+      stderr: "",
+    },
+    head: { status: 0, stdout: "abc123\n", stderr: "" },
+  }, null, 2)}\n`);
+
+  const result = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/publication-status.mjs"),
+    "--root",
+    root,
+    "--fixture",
+    fixture,
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const payload = JSON.parse(result.stdout);
+  assert.equal(payload.packageExists, false);
+  assert.equal(payload.readyForNpmOwnerAction, false);
+  assert.equal(payload.readyForInitialPackageBootstrap, false);
+  assert.match(payload.blockers.join("\n"), /does not have account-level 2FA enabled/);
+  assert.match(payload.npm.trustDryRunSkippedReason, /Package does not exist yet/);
+});
+
+test("publication status allows bootstrap action only after 2FA and draft release proof", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-publication-status-bootstrap-"));
+  writeFixture(root);
+  const fixture = join(root, "fixture.json");
+  writeFileSync(fixture, `${JSON.stringify({
+    npmView: { status: 1, stdout: "", stderr: "npm error code E404" },
+    whoami: { status: 0, stdout: "genesisbuild\n", stderr: "" },
+    profile: { status: 0, stdout: JSON.stringify({ tfa: true, email_verified: true }), stderr: "" },
+    release: {
+      status: 0,
+      stdout: JSON.stringify({
+        isDraft: true,
+        isPrerelease: false,
+        publishedAt: null,
+        tagName: "v0.4.3",
+        targetCommitish: "abc123",
+        url: "https://github.com/genesisbuildstudio/living-harness-framework/releases/tag/v0.4.3",
+      }),
+      stderr: "",
+    },
+    head: { status: 0, stdout: "abc123\n", stderr: "" },
+  }, null, 2)}\n`);
+
+  const result = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/publication-status.mjs"),
+    "--root",
+    root,
+    "--fixture",
+    fixture,
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const payload = JSON.parse(result.stdout);
+  assert.equal(payload.packageExists, false);
+  assert.equal(payload.readyForInitialPackageBootstrap, true);
+  assert.equal(payload.readyForNpmOwnerAction, true);
+  assert.match(payload.blockers.join("\n"), /npm trust cannot be configured until a package exists/);
+});
