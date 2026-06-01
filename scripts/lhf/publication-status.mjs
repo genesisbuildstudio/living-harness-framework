@@ -119,6 +119,7 @@ const npm = {
   trustDryRun: null,
   trustList: null,
   trustedPublisherConfigured: false,
+  trustListSkippedReason: null,
   trustDryRunSkippedReason: null,
 };
 const github = {
@@ -161,7 +162,9 @@ if (args.offline) {
     blockers.push(`npm account profile could not be verified: ${profile.stderr.trim() || profile.stdout.trim()}`);
   }
 
-  if (packageExists && npm.account2faEnabled) {
+  if (published) {
+    npm.trustListSkippedReason = "Expected package version is already published; trust-list proof is not required for post-publish status.";
+  } else if (packageExists && npm.account2faEnabled) {
     const trustList = external("trustList", "npm", ["trust", "list", packageName, "--json"]);
     if (trustList.status === 0 && trustList.stdout.trim()) {
       npm.trustList = parseTrustList(trustList.stdout);
@@ -171,7 +174,9 @@ if (args.offline) {
     }
   }
 
-  if (!packageExists) {
+  if (published) {
+    npm.trustDryRunSkippedReason = "Expected package version is already published; trust dry-run is not required for post-publish status.";
+  } else if (!packageExists) {
     npm.trustDryRunSkippedReason = "Package does not exist yet; npm docs require an existing package before configuring trust.";
   } else if (!npm.account2faEnabled) {
     npm.trustDryRunSkippedReason = "Account-level 2FA is not enabled; npm docs require 2FA before trust commands.";
