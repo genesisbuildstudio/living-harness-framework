@@ -75,3 +75,90 @@ test("template isolation check allows generic LHF framework wording", () => {
   assert.equal(result.status, 0, result.stderr || result.stdout);
   assert.match(result.stdout, /PASS/);
 });
+
+function writeNpmReleaseFixture(root, { rootVersion = "0.4.3", packageVersion = "0.4.3", manifestVersion = "0.4.3" } = {}) {
+  mkdirSync(join(root, ".github/workflows"), { recursive: true });
+  mkdirSync(join(root, ".lhf"), { recursive: true });
+  mkdirSync(join(root, "packages/create-living-harness/bin"), { recursive: true });
+  writeFileSync(join(root, "package.json"), JSON.stringify({
+    name: "living-harness-framework-starter",
+    version: rootVersion,
+    private: true,
+  }, null, 2));
+  writeFileSync(join(root, ".lhf/manifest.json"), JSON.stringify({
+    schemaVersion: "lhf-manifest/v1",
+    version: manifestVersion,
+    frameworkFiles: [],
+  }, null, 2));
+  writeFileSync(join(root, "packages/create-living-harness/package.json"), JSON.stringify({
+    name: "create-living-harness",
+    version: packageVersion,
+    type: "module",
+    bin: {
+      "create-living-harness": "bin/create-living-harness.mjs",
+    },
+    publishConfig: {
+      access: "public",
+      provenance: true,
+    },
+  }, null, 2));
+  writeFileSync(join(root, "packages/create-living-harness/bin/create-living-harness.mjs"), "#!/usr/bin/env node\n");
+  writeFileSync(join(root, ".github/workflows/release-npm.yml"), [
+    "name: Release npm",
+    "on:",
+    "  release:",
+    "    types: [published]",
+    "  workflow_dispatch:",
+    "permissions:",
+    "  contents: read",
+    "  id-token: write",
+    "jobs:",
+    "  publish:",
+    "    runs-on: ubuntu-latest",
+    "    environment: npm-publish",
+    "    steps:",
+    "      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+    "      - uses: pnpm/action-setup@d15e628ca66d93ee5f352c71671a7bc6a97af5c9",
+    "      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e",
+    "        with:",
+    "          node-version: 24",
+    "          package-manager-cache: false",
+    "          registry-url: https://registry.npmjs.org",
+    "      - run: npm install -g npm@11.16.0",
+    "      - run: pnpm install --frozen-lockfile",
+    "      - run: pnpm typecheck",
+    "      - run: pnpm build",
+    "      - run: pnpm test",
+    "      - run: pnpm lhf:session-close --changed --check",
+    "      - name: Verify release tag matches package version",
+    "        run: |",
+    "          package_version=\"$(node -p \"JSON.parse(require('node:fs').readFileSync('packages/create-living-harness/package.json', 'utf8')).version\")\"",
+    "          tag_name=\"${{ github.event.release.tag_name || github.ref_name }}\"",
+    "          test \"$tag_name\" = \"v$package_version\"",
+    "      - run: npm pack --dry-run",
+    "        working-directory: packages/create-living-harness",
+    "      - run: npm publish --access public",
+    "        working-directory: packages/create-living-harness",
+    "",
+  ].join("\n"));
+}
+
+test("npm release readiness check blocks framework version drift", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-npm-release-bad-"));
+  writeNpmReleaseFixture(root, { manifestVersion: "0.4.2" });
+
+  const result = runScript("check-npm-release-readiness.mjs", root);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /manifest version 0\.4\.2 must match package version 0\.4\.3/);
+});
+
+test("npm release readiness check accepts trusted publishing workflow", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-npm-release-good-"));
+  writeNpmReleaseFixture(root);
+
+  const result = runScript("check-npm-release-readiness.mjs", root);
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.match(result.stdout, /PASS/);
+});

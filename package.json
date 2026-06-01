@@ -23,6 +23,7 @@
     "lhf:check-branch-protection": "node scripts/lhf/check-branch-protection.mjs",
     "lhf:check-doc-size": "node scripts/lhf/check-doc-size.mjs",
     "lhf:check-github-actions": "node scripts/lhf/check-github-actions.mjs",
+    "lhf:check-npm-release": "node scripts/lhf/check-npm-release-readiness.mjs",
     "lhf:check-template-isolation": "node scripts/lhf/check-template-isolation.mjs",
     "lhf:check-script-registry": "node scripts/lhf/check-script-registry.mjs",
     "lhf:check-secrets": "node scripts/lhf/check-secrets.mjs",
