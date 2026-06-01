@@ -36,6 +36,7 @@
     "scripts/lhf/init-project.mjs",
     "scripts/lhf/onboard.mjs",
     "scripts/lhf/upgrade.mjs",
+    "scripts/lhf/publication-status.mjs",
     "scripts/lhf/fst-run.mjs",
     "scripts/lhf/check-github-actions.mjs",
     "scripts/lhf/check-npm-release-readiness.mjs",

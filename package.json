@@ -16,6 +16,7 @@
     "lhf:benchmark": "node scripts/lhf/benchmark.mjs",
     "lhf:agent-conformance": "node scripts/lhf/agent-conformance.mjs",
     "lhf:upgrade": "node scripts/lhf/upgrade.mjs",
+    "lhf:publication-status": "node scripts/lhf/publication-status.mjs",
     "lhf:session-start": "node scripts/lhf/session-start.mjs",
     "lhf:impact": "node scripts/lhf/impact.mjs",
     "lhf:harness-graph": "node scripts/lhf/harness-graph.mjs",

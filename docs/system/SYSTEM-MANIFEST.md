@@ -40,6 +40,7 @@ This is the human-readable inventory. Generated truth lives in
 - `pnpm lhf:doctor`
 - `pnpm lhf:benchmark`
 - `pnpm lhf:agent-conformance`
+- `pnpm lhf:publication-status --json`
 - `pnpm lhf:check-ai-surfaces`
 - `pnpm lhf:check-branch-protection --repo <owner>/<repo>`
 - `pnpm lhf:check-github-actions`

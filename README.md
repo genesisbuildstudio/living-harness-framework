@@ -86,6 +86,7 @@ pnpm lhf:check-wrangler
 pnpm lhf:doctor
 pnpm lhf:benchmark
 pnpm lhf:agent-conformance
+pnpm lhf:publication-status --json
 pnpm lhf:fst --task 000-lhf-kernel-health
 pnpm lhf:upgrade --check
 pnpm lhf:upgrade --source <template-root> --diff
@@ -103,3 +104,6 @@ branding, business logic, private data, secrets, or production credentials.
 The public GitHub template is live. npm publishing is intentionally gated behind
 npm trusted publishing and release-tag verification. See
 `docs/system/RELEASE.md` before publishing a package version.
+Use `pnpm lhf:publication-status --json` to verify the current npm/GitHub
+publish state before and after release, including whether the draft release is
+ready for the npm owner action.
