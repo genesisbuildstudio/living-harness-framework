@@ -184,3 +184,62 @@ test("publication status accepts npm CLI object-shaped 2FA profile", () => {
   assert.equal(payload.readyForInitialPackageBootstrap, true);
   assert.doesNotMatch(payload.blockers.join("\n"), /does not have account-level 2FA enabled/);
 });
+
+test("publication status detects configured trusted publisher for next GitHub release", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-publication-status-trust-list-"));
+  writeFixture(root, "0.4.4");
+  const fixture = join(root, "fixture.json");
+  writeFileSync(fixture, `${JSON.stringify({
+    npmView: { status: 0, stdout: JSON.stringify("0.4.3"), stderr: "" },
+    whoami: { status: 0, stdout: "genesisbuild\n", stderr: "" },
+    profile: {
+      status: 0,
+      stdout: JSON.stringify({
+        tfa: { pending: null, mode: "auth-and-writes" },
+        email_verified: true,
+      }),
+      stderr: "",
+    },
+    trustList: {
+      status: 0,
+      stdout: JSON.stringify({
+        id: "trusted-publisher-id",
+        type: "github",
+        file: "release-npm.yml",
+        repository: "genesisbuildstudio/living-harness-framework",
+        environment: "npm-publish",
+        permissions: ["createPackage"],
+      }),
+      stderr: "",
+    },
+    release: {
+      status: 0,
+      stdout: JSON.stringify({
+        isDraft: true,
+        isPrerelease: false,
+        publishedAt: null,
+        tagName: "v0.4.4",
+        targetCommitish: "abc123",
+        url: "https://github.com/genesisbuildstudio/living-harness-framework/releases/tag/v0.4.4",
+      }),
+      stderr: "",
+    },
+    head: { status: 0, stdout: "abc123\n", stderr: "" },
+  }, null, 2)}\n`);
+
+  const result = spawnSync(process.execPath, [
+    join(repoRoot, "scripts/lhf/publication-status.mjs"),
+    "--root",
+    root,
+    "--fixture",
+    fixture,
+    "--json",
+  ], { encoding: "utf8" });
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  const payload = JSON.parse(result.stdout);
+  assert.equal(payload.npm.trustedPublisherConfigured, true);
+  assert.equal(payload.readyForGitHubReleasePublish, true);
+  assert.equal(payload.readyForNpmOwnerAction, true);
+  assert.match(payload.blockers.join("\n"), /npm has create-living-harness@0.4.3; expected 0.4.4/);
+});
