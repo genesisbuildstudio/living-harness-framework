@@ -65,6 +65,7 @@ FST-lite proof templates.
 - `pnpm lhf:check-ai-surfaces` passes.
 - `pnpm lhf:check-branch-protection --fixture <rules.json>` passes in tests.
 - `pnpm lhf:check-github-actions` passes.
+- `pnpm lhf:check-template-isolation` passes.
 - `pnpm lhf:check-secrets` passes.
 - `pnpm lhf:check-supabase-rls` passes.
 - `pnpm lhf:check-supabase-tests` passes.

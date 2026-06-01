@@ -77,6 +77,7 @@ enforce something, cut it.
 pnpm lhf:check-ai-surfaces
 pnpm lhf:check-branch-protection --repo owner/name
 pnpm lhf:check-github-actions
+pnpm lhf:check-template-isolation
 pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
 pnpm lhf:check-supabase-tests

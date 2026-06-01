@@ -26,6 +26,7 @@ jobs:
       - run: pnpm lhf:check-ai-surfaces
       - run: pnpm lhf:check-doc-size
       - run: pnpm lhf:check-github-actions
+      - run: pnpm lhf:check-template-isolation
       - run: pnpm lhf:check-script-registry
       - run: pnpm lhf:check-secrets
       - run: pnpm lhf:check-supabase-rls

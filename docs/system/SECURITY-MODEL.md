@@ -16,6 +16,8 @@ autonomy inside deterministic gates.
 - `pnpm lhf:check-secrets` blocks high-confidence committed credentials.
 - `pnpm lhf:check-github-actions` blocks dangerous workflow events and broad
   write permissions.
+- `pnpm lhf:check-template-isolation` blocks copied product-specific strings
+  from entering the reusable starter.
 - `pnpm lhf:check-wrangler` blocks `wrangler.toml`, missing observability, and
   secret-like Cloudflare `vars`.
 - `pnpm lhf:check-supabase-rls` blocks public Supabase tables without RLS and at

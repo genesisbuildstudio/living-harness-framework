@@ -38,6 +38,7 @@
     "scripts/lhf/upgrade.mjs",
     "scripts/lhf/fst-run.mjs",
     "scripts/lhf/check-github-actions.mjs",
+    "scripts/lhf/check-template-isolation.mjs",
     "scripts/lhf/check-branch-protection.mjs",
     "scripts/lhf/check-supabase-tests.mjs",
     "packages/create-living-harness/package.json",

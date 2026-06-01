@@ -43,6 +43,7 @@ This is the human-readable inventory. Generated truth lives in
 - `pnpm lhf:check-ai-surfaces`
 - `pnpm lhf:check-branch-protection --repo <owner>/<repo>`
 - `pnpm lhf:check-github-actions`
+- `pnpm lhf:check-template-isolation`
 - `pnpm lhf:check-secrets`
 - `pnpm lhf:check-script-registry`
 - `pnpm lhf:check-supabase-rls`
