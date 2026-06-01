@@ -90,6 +90,23 @@ function hasAccount2fa(profile) {
   return false;
 }
 
+function trustMatches(entry, { packageName, repo }) {
+  return entry?.type === "github"
+    && entry?.file === "release-npm.yml"
+    && entry?.repository === repo
+    && entry?.environment === "npm-publish"
+    && Array.isArray(entry?.permissions)
+    && entry.permissions.length > 0
+    && String(packageName).length > 0;
+}
+
+function parseTrustList(stdout) {
+  const parsed = JSON.parse(stdout);
+  if (Array.isArray(parsed)) return parsed;
+  if (parsed && typeof parsed === "object") return [parsed];
+  return [];
+}
+
 if (!expectedVersion) failures.push("expected package version missing");
 
 const npm = {
@@ -100,6 +117,8 @@ const npm = {
   profile: null,
   account2faEnabled: false,
   trustDryRun: null,
+  trustList: null,
+  trustedPublisherConfigured: false,
   trustDryRunSkippedReason: null,
 };
 const github = {
@@ -142,10 +161,22 @@ if (args.offline) {
     blockers.push(`npm account profile could not be verified: ${profile.stderr.trim() || profile.stdout.trim()}`);
   }
 
+  if (packageExists && npm.account2faEnabled) {
+    const trustList = external("trustList", "npm", ["trust", "list", packageName, "--json"]);
+    if (trustList.status === 0 && trustList.stdout.trim()) {
+      npm.trustList = parseTrustList(trustList.stdout);
+      npm.trustedPublisherConfigured = npm.trustList.some((entry) => trustMatches(entry, { packageName, repo }));
+    } else {
+      blockers.push(`npm trusted-publisher list failed: ${trustList.stderr.trim() || trustList.stdout.trim()}`);
+    }
+  }
+
   if (!packageExists) {
     npm.trustDryRunSkippedReason = "Package does not exist yet; npm docs require an existing package before configuring trust.";
   } else if (!npm.account2faEnabled) {
     npm.trustDryRunSkippedReason = "Account-level 2FA is not enabled; npm docs require 2FA before trust commands.";
+  } else if (npm.trustedPublisherConfigured) {
+    npm.trustDryRunSkippedReason = "Trusted publisher is already configured.";
   } else {
     const trustDryRun = external("trustDryRun", "npm", [
       "trust",
@@ -204,10 +235,16 @@ const readyForTrustedPublisherSetup = localReady
   && !published
   && Boolean(npm.authenticatedUser)
   && account2faEnabled
+  && npm.trustedPublisherConfigured === false
   && trustedPublisherShapeOk
   && releaseDraftOnHead;
+const readyForGitHubReleasePublish = localReady
+  && packageExists
+  && !published
+  && npm.trustedPublisherConfigured === true
+  && releaseDraftOnHead;
 const readyForNpmOwnerAction = localReady
-  && (readyForInitialPackageBootstrap || readyForTrustedPublisherSetup);
+  && (readyForInitialPackageBootstrap || readyForTrustedPublisherSetup || readyForGitHubReleasePublish);
 const ok = localReady && (args.requirePublished ? published : true);
 const payload = {
   ok,
@@ -221,6 +258,7 @@ const payload = {
   readyToPublish: localReady && blockers.length === 0 && !published,
   readyForInitialPackageBootstrap,
   readyForTrustedPublisherSetup,
+  readyForGitHubReleasePublish,
   readyForNpmOwnerAction,
   localReady,
   failures,

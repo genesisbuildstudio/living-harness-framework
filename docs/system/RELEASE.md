@@ -63,16 +63,21 @@ Use this only when `npm view create-living-harness version` returns 404 and
 
    ```bash
    pnpm --dir packages/create-living-harness pack --pack-destination /tmp/lhf-pack
-   (cd packages/create-living-harness && npm publish --access public --dry-run)
+   (cd packages/create-living-harness && npm publish --access public --provenance=false --dry-run)
    ```
 
 3. Publish the bootstrap version only after owner confirmation:
 
    ```bash
-   (cd packages/create-living-harness && npm publish --access public)
+   (cd packages/create-living-harness && npm publish --access public --provenance=false)
    ```
 
-4. Configure trusted publishing with the command below.
+   The bootstrap publish disables provenance because local npm cannot create
+   GitHub OIDC provenance. This exception is only for creating the package
+   before npm allows trusted-publisher setup.
+
+4. Configure trusted publishing with the command below and verify
+   `npm trust list create-living-harness --json` returns the GitHub publisher.
 5. Bump the package to the next patch version and publish that version through
    `.github/workflows/release-npm.yml`; this is the first fully trusted
    publishing release.
