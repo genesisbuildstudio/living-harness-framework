@@ -15,6 +15,11 @@
       "command": "pnpm lhf:doctor",
       "status": "ACTIVE"
     },
+    "download-smoke": {
+      "path": "scripts/lhf/download-smoke.mjs",
+      "command": "pnpm lhf:download-smoke --json",
+      "status": "ACTIVE"
+    },
     "episode": {
       "path": "scripts/lhf/episode.mjs",
       "command": "pnpm lhf:episode --task \"<id>\" --status pass --proof \"<proof>\"",

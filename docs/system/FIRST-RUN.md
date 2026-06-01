@@ -11,6 +11,12 @@ pnpm lhf:doctor
 pnpm lhf:session-close --changed --check
 ```
 
+Before recommending the template publicly, maintainers should also run:
+
+```bash
+pnpm lhf:download-smoke --json
+```
+
 Then give your AI coding platform this prompt:
 
 ```text
@@ -21,6 +27,8 @@ rules while helping me build this app.
 ## What Good Looks Like
 
 - `pnpm lhf:doctor` reports zero failures.
+- `pnpm lhf:download-smoke --json` proves a clean downloaded copy can run the
+  starter health checks.
 - `.lhf/onboarding.json` records the chosen project name, slug, stack, and AI
   platform.
 - The first pull request keeps CI, CodeQL, `lhf-health`, and the harness graph

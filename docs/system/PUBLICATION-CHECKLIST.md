@@ -12,6 +12,8 @@ Use this before publishing LHF as a public GitHub template.
 - Keep all third-party GitHub Actions pinned to full commit SHAs.
 - Enable Dependabot alerts and security updates.
 - Confirm `pnpm test` and `pnpm lhf:session-close --changed --check` pass.
+- Confirm `pnpm lhf:download-smoke --json` passes against the public template
+  repo before telling users to download it.
 - Confirm `pnpm lhf:check-npm-release` passes before publishing a release.
 - Confirm `pnpm lhf:publication-status --json` reports
   `readyForNpmOwnerAction: true` before first publish.
