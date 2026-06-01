@@ -1,6 +1,6 @@
 {
   "name": "create-living-harness",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Create a Living Harness Framework Cloudflare + Supabase monorepo",
   "keywords": [
     "ai",

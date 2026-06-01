@@ -14,6 +14,9 @@ Use this before publishing LHF as a public GitHub template.
 - Confirm `pnpm test` and `pnpm lhf:session-close --changed --check` pass.
 - Confirm `pnpm lhf:check-branch-protection --repo <owner>/<repo>` passes.
 - Confirm the GitHub Pages documentation site returns HTTP 200.
+- Configure npm trusted publishing for package `create-living-harness`, repo
+  `genesisbuildstudio/living-harness-framework`, workflow `release-npm.yml`,
+  environment `npm-publish`, and allowed action `npm publish`.
 - Confirm `npm view create-living-harness version` returns 404 before the first
   public publish, or the intended previous version after publish.
 - Tag the release from the exact commit being published and write release notes.
@@ -24,9 +27,9 @@ Use this before publishing LHF as a public GitHub template.
 
 - Enable OpenSSF Scorecard.
 - Publish npm packages with npm trusted publishing. npm currently requires npm
-  CLI 11.10.0+, Node 22.14.0+, an existing package, and account-level 2FA for
-  trusted publishing, and automatically generates provenance for public
-  packages published from public repositories.
+  CLI 11.5.1+, Node 22.14.0+, an authenticated npm owner with account-level 2FA,
+  and automatically generates provenance for public packages published from
+  public repositories.
 - Enable GitHub Pages and confirm the Pages workflow deploys `docs-site/`.
 - Add a demo video or GIF.
 - Add a one-command template setup example.

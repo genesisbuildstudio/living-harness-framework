@@ -1,6 +1,6 @@
 {
   "name": "living-harness-framework-starter",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "type": "module",
   "description": "AI-native monorepo starter for Cloudflare + Supabase apps",
