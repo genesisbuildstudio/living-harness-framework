@@ -56,12 +56,14 @@ pnpm build
 pnpm test
 pnpm lhf:session-close --changed --check
 pnpm --dir packages/create-living-harness pack --pack-destination /tmp/lhf-pack
+pnpm lhf:publication-status --json
 ```
 
 ## Post-Publish Proof
 
 ```bash
 npm view create-living-harness version
+pnpm lhf:publication-status --require-published --json
 tmpdir="$(mktemp -d)"
 cd "$tmpdir"
 pnpm dlx create-living-harness@latest lhf-smoke --name "LHF Smoke"

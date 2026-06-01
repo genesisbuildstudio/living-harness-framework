@@ -40,6 +40,11 @@
       "command": "pnpm lhf:upgrade --check",
       "status": "ACTIVE"
     },
+    "publication-status": {
+      "path": "scripts/lhf/publication-status.mjs",
+      "command": "pnpm lhf:publication-status --json",
+      "status": "ACTIVE"
+    },
     "session-start": {
       "path": "scripts/lhf/session-start.mjs",
       "command": "pnpm lhf:session-start --scope \"<work>\"",

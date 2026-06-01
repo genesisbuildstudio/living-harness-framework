@@ -13,6 +13,8 @@ Use this before publishing LHF as a public GitHub template.
 - Enable Dependabot alerts and security updates.
 - Confirm `pnpm test` and `pnpm lhf:session-close --changed --check` pass.
 - Confirm `pnpm lhf:check-npm-release` passes before publishing a release.
+- Confirm `pnpm lhf:publication-status --json` reports
+  `readyForNpmOwnerAction: true` before first publish.
 - Confirm `pnpm lhf:check-branch-protection --repo <owner>/<repo>` passes.
 - Confirm the GitHub Pages documentation site returns HTTP 200.
 - Configure npm trusted publishing for package `create-living-harness`, repo
