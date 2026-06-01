@@ -38,6 +38,7 @@ This is the human-readable inventory. Generated truth lives in
 ## Required Gates
 
 - `pnpm lhf:doctor`
+- `pnpm lhf:download-smoke --json`
 - `pnpm lhf:benchmark`
 - `pnpm lhf:agent-conformance`
 - `pnpm lhf:publication-status --json`

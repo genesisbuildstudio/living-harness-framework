@@ -71,6 +71,7 @@ FST-lite proof templates.
 - `pnpm lhf:check-supabase-rls` passes.
 - `pnpm lhf:check-supabase-tests` passes.
 - `pnpm lhf:check-wrangler` passes.
+- `pnpm lhf:download-smoke --json` passes before public download promotion.
 - `pnpm lhf:ticket-contract --check` passes.
 - `pnpm lhf:upgrade --check` passes.
 - `pnpm lhf:impact --changed` maps framework-owned files to this contract.

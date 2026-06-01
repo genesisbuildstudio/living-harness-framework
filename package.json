@@ -11,6 +11,7 @@
     "lhf:init": "node scripts/lhf/init-project.mjs",
     "lhf:onboard": "node scripts/lhf/onboard.mjs",
     "lhf:doctor": "node scripts/lhf/doctor.mjs",
+    "lhf:download-smoke": "node scripts/lhf/download-smoke.mjs",
     "lhf:episode": "node scripts/lhf/episode.mjs",
     "lhf:fst": "node scripts/lhf/fst-run.mjs",
     "lhf:benchmark": "node scripts/lhf/benchmark.mjs",

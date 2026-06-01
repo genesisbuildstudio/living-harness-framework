@@ -32,6 +32,7 @@
     "scripts/lhf/agent-conformance.mjs",
     "scripts/lhf/benchmark.mjs",
     "scripts/lhf/doctor.mjs",
+    "scripts/lhf/download-smoke.mjs",
     "scripts/lhf/session-close.mjs",
     "scripts/lhf/init-project.mjs",
     "scripts/lhf/onboard.mjs",

@@ -84,6 +84,7 @@ pnpm lhf:check-supabase-rls
 pnpm lhf:check-supabase-tests
 pnpm lhf:check-wrangler
 pnpm lhf:doctor
+pnpm lhf:download-smoke --json
 pnpm lhf:benchmark
 pnpm lhf:agent-conformance
 pnpm lhf:publication-status --json
@@ -107,3 +108,5 @@ npm trusted publishing and release-tag verification. See
 Use `pnpm lhf:publication-status --json` to verify the current npm/GitHub
 publish state before and after release, including whether the draft release is
 ready for the npm owner action.
+Use `pnpm lhf:download-smoke --json` to prove a clean downloaded copy can run
+the starter health checks.
