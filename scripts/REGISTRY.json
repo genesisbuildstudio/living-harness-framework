@@ -75,6 +75,11 @@
       "command": "pnpm lhf:check-github-actions",
       "status": "ACTIVE"
     },
+    "check-npm-release-readiness": {
+      "path": "scripts/lhf/check-npm-release-readiness.mjs",
+      "command": "pnpm lhf:check-npm-release",
+      "status": "ACTIVE"
+    },
     "check-template-isolation": {
       "path": "scripts/lhf/check-template-isolation.mjs",
       "command": "pnpm lhf:check-template-isolation",

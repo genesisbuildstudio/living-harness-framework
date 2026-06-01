@@ -50,6 +50,7 @@ package and publish future releases only through GitHub Actions.
 
 ```bash
 pnpm install --frozen-lockfile
+pnpm lhf:check-npm-release
 pnpm typecheck
 pnpm build
 pnpm test

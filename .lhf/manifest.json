@@ -1,6 +1,6 @@
 {
   "schemaVersion": "lhf-manifest/v1",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "frameworkFiles": [
     "AGENTS.md",
     "CLAUDE.md",
@@ -38,6 +38,7 @@
     "scripts/lhf/upgrade.mjs",
     "scripts/lhf/fst-run.mjs",
     "scripts/lhf/check-github-actions.mjs",
+    "scripts/lhf/check-npm-release-readiness.mjs",
     "scripts/lhf/check-template-isolation.mjs",
     "scripts/lhf/check-branch-protection.mjs",
     "scripts/lhf/check-supabase-tests.mjs",
