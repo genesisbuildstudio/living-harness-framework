@@ -41,6 +41,7 @@ pnpm lhf:harness-graph --check
 pnpm lhf:check-ai-surfaces
 pnpm lhf:check-branch-protection --fixture <rules.json>
 pnpm lhf:check-github-actions
+pnpm lhf:check-template-isolation
 pnpm lhf:check-secrets
 pnpm lhf:check-supabase-rls
 pnpm lhf:check-supabase-tests

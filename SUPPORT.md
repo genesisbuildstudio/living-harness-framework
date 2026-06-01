@@ -18,4 +18,5 @@ the exact AI coding platform involved.
 ## Security
 
 Do not report vulnerabilities in public issues. Use GitHub private vulnerability
-reporting when available, or email `security@genesis.build`.
+reporting when available, or contact the security contact configured by the
+adopting project.

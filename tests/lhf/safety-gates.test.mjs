@@ -43,3 +43,35 @@ test("supabase RLS check blocks public tables without policies", () => {
   assert.match(result.stderr, /without ENABLE ROW LEVEL SECURITY/);
   assert.match(result.stderr, /without at least one policy/);
 });
+
+test("template isolation check blocks GENESIS product coupling", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-isolation-"));
+  mkdirSync(join(root, "docs/system"), { recursive: true });
+  writeFileSync(join(root, "docs/system/READ-FIRST.md"), [
+    "# Read First",
+    "This reusable template must not point users at genesisbuildstudio/genesis-cloud.",
+    "",
+  ].join("\n"));
+
+  const result = runScript("check-template-isolation.mjs", root);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /GENESIS-specific string/);
+  assert.match(result.stderr, /genesisbuildstudio\/genesis-cloud/);
+});
+
+test("template isolation check allows generic LHF framework wording", () => {
+  const root = mkdtempSync(join(tmpdir(), "lhf-isolation-clean-"));
+  mkdirSync(join(root, "docs/system"), { recursive: true });
+  writeFileSync(join(root, "docs/system/READ-FIRST.md"), [
+    "# Read First",
+    "The Living Harness Framework is a reusable Cloudflare and Supabase starter.",
+    "Use GitHub Security Advisories for coordinated vulnerability disclosure.",
+    "",
+  ].join("\n"));
+
+  const result = runScript("check-template-isolation.mjs", root);
+
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.match(result.stdout, /PASS/);
+});

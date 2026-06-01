@@ -35,7 +35,8 @@ pnpm lhf:check-supabase-tests
 
 Report suspected vulnerabilities through GitHub private vulnerability reporting
 for this repository when available. If GitHub private reporting is unavailable,
-email `security@genesis.build` with:
+open a private advisory or contact the repository maintainers through the
+security contact configured by the adopting project with:
 
 - affected package or path,
 - reproducible impact,
